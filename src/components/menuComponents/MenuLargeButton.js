@@ -10,18 +10,18 @@ const MenuInput=styled.TouchableOpacity`
 `
 const MenuText=styled.Text`
     textAlign:center
-    font-size:17.5px;
+    font-size:${vw(4)}px;
     color:#ecb99b;
 `
 
 
 export default ({Name,IconSvg,Type})=>{
     let Size=(Type=="Large")?90:40;
-    let IconWidth=(Type=="Large")?50:20;
+    let IconWidth=(Type=="Large")?35:20;
 
     const MenuInputArea=styled.View`
         marginTop:${vh(3)}px;
-        width:${Size}%; 
+        width:${vw(Size)}px; 
         justify-content:center;
         align-items:center;
         border-width: 2.5px;

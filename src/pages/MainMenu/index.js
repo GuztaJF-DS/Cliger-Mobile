@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { styles } from '../Style'
 import MenuLargeButton from '../../components/menuComponents/MenuLargeButton';
 import MenuHeader from '../../components/menuComponents/MenuHeader';
+import MenuAddButton from '../../components/menuComponents/MenuAddButton';
 
 import Add from '../../assets/Icons/Add.svg';
 import Finances from '../../assets/Icons/Finances.svg';
@@ -23,6 +24,9 @@ export default function Main({navigation,route}){
             <View style={{alignItems: 'center',flexDirection:'row',justifyContent:'space-around'}}>
             <MenuLargeButton Type={"Normal"} IconSvg={Add} Name={"Adiconar Serviços/Produtos"}/>
             <MenuLargeButton Type={"Normal"} IconSvg={Loan} Name={"Simular Emprestimos"}/>
+            </View>
+            <View style={{alignItems:'flex-end'}}>
+                <MenuAddButton/>
             </View>
         </View>
     )
