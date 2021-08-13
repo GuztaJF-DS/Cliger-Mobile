@@ -1,0 +1,43 @@
+import React from 'react';
+import styled from 'styled-components/native';
+import { vw,vh } from 'react-native-expo-viewport-units';
+
+const MenuInput=styled.TouchableOpacity`
+    width:100%;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`
+const MenuText=styled.Text`
+    textAlign:center
+    font-size:17.5px;
+    color:#ecb99b;
+`
+
+
+export default ({Name,IconSvg,Type})=>{
+    let Size=(Type=="Large")?90:40;
+    let IconWidth=(Type=="Large")?50:20;
+
+    const MenuInputArea=styled.View`
+        marginTop:${vh(3)}px;
+        width:${Size}%; 
+        justify-content:center;
+        align-items:center;
+        border-width: 2.5px;
+        border-color:#ecb99b;
+        border-radius:10px;
+        padding:1px;
+    `
+    
+    return(
+        <MenuInputArea>
+            <MenuInput
+                onPress={()=>{console.log('a')}}
+            >
+                <IconSvg width={vw(IconWidth)} height={vh(15)}/>
+                <MenuText>{Name}</MenuText>
+            </MenuInput>
+        </MenuInputArea>
+    )
+}
