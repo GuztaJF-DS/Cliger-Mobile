@@ -6,9 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ResponsiveImage from "react-native-responsive-image";
 
 /*My Components*/
-import {styles,InputArea,NewText} from '../Style';
-import Api from '../../Api';
-import Input from '../../components/form/Input';
+import {styles,InputArea,NewText} from '../../Style';
+import Api from '../../../Api';
+import Input from '../../../components/form/Input';
 
 /*Icons*/
 import Email from '../../Resources/Icons/Email.svg';
@@ -16,15 +16,15 @@ import Password from '../../Resources/Icons/Password.svg';
 
 export default function Main({ navigation }) {
   const [login,setLogin]=useState({});
-  const [dados,setDados]=useState({});
+  const [data,setData]=useState({});
   const [error,setError]=useState({});
 
-  /*UseEffect: Dados*/
+  /*UseEffect: data*/
   useEffect(()=>{
     async function FetchData(){
       try{
-        if(Object.values(dados).length!=0){
-          const resp=await Api.post('auth/authenticate',dados);
+        if(Object.values(data).length!=0){
+          const resp=await Api.post('auth/authenticate',data);
           if(resp.data.Error){
             setError(resp.data);
             return;
@@ -40,7 +40,7 @@ export default function Main({ navigation }) {
       }
     }
     FetchData();
-  },[dados]);
+  },[data]);
 
   /*UseEffect: Login*/
   useEffect(()=>{
@@ -66,7 +66,7 @@ export default function Main({ navigation }) {
         Email:data.Email,
         Password:data.Password
       }
-      setDados(Body);
+      setData(Body);
   }
 
   /*Other Functions*/
@@ -92,7 +92,7 @@ export default function Main({ navigation }) {
           initHeight="83.5"
         />
       </View>
-        <Input IconSvg={Email} Control={control} Name={"Email"} Placeholder={"Email"}/>
+        <Input IconSvg={Email} Control={control} Name={"Email"} Placeholder={"Email"} keyboardType={"email-address"}/>
         {errorTreatment("Email") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Email")}</Text>}
         <Input IconSvg={Password}  Control={control} Name={"Password"} Placeholder={"Senha"} Password={true}/>
         {errorTreatment("Password") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Password")}</Text>}

@@ -1,12 +1,12 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import PreLoad from '../pages/PreLoad/index';
-import SignUp from '../pages/SignUp/index';
-import SignIn from '../pages/SignIn/index';
-import EmailSelectChangePassword from '../pages/EmailSelectChangePassword/index'
-import EmailCheckToken from '../pages/EmailCheckToken/index'
-import PasswordChange from '../pages/PasswordChange/index'
+import PreLoad from '../pages/Login/PreLoad/index';
+import SignUp from '../pages/Login/SignUp/index';
+import SignIn from '../pages/Login/SignIn/index';
+import EmailSelectChangePassword from '../pages/Login/EmailSelectChangePassword/index'
+import EmailCheckToken from '../pages/Login/EmailCheckToken/index'
+import PasswordChange from '../pages/Login/PasswordChange/index'
 import Main from '../pages/MainMenu/index';
 
 export default()=>{

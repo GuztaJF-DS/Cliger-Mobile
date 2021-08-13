@@ -25,15 +25,15 @@ const FormInput =styled.TextInput`
   margin-left:5px;
 `
 
-export default ({IconSvg,Control,Name,Placeholder,Password})=>{
+export default ({IconSvg,Control,Name,Placeholder,Password,maxLength,keyboardType,SignUp})=>{
     return(
       <InputArea>
       <Controller
           control={Control}
           rules={{
            required: true,
-           pattern:(Name=="Email")? /^\S+@\S+$/i:null,
-           minLength:(Name=="PhoneNumber")?11:null
+           pattern:(Name=="Email")? /^\S+@\S+$/i:(Name=="Password"&&SignUp===true)?/[A-Z]+/:null,
+           minLength:(Name=="PhoneNumber")?11:(Name=="Password"&&SignUp===true)?8:null
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <>
@@ -44,6 +44,8 @@ export default ({IconSvg,Control,Name,Placeholder,Password})=>{
                 placeholder={Placeholder}
                 secureTextEntry={Password}
                 color="#ebb89b"
+                maxLength={maxLength}
+                keyboardType={keyboardType}
               />
             </>
           )}

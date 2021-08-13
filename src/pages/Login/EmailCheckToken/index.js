@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import ResponsiveImage from "react-native-responsive-image";
 
 /*My Components*/
-import { styles,InputArea,NewText } from '../Style';
-import Api from '../../Api';
-import Input from '../../components/form/Input';
+import { styles,InputArea,NewText } from '../../Style';
+import Api from '../../../Api';
+import Input from '../../../components/form/Input';
 
 /*Icons*/
 import Mail from '../../Resources/Icons/Email.svg';

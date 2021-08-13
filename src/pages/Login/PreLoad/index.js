@@ -5,8 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { vw } from 'react-native-expo-viewport-units';
 
 /*My Components*/
-import { styles } from '../Style';
-import Api from '../../Api';
+import { styles } from '../../Style';
+import Api from '../../../Api';
 
 export default function Main({navigation}){
     const [error,SetError]=useState({});

@@ -6,11 +6,11 @@ import ResponsiveImage from "react-native-responsive-image";
 import Modal from 'react-native-modal';
 
 /*My Components*/
-import Api from '../../Api';
-import Input from '../../components/form/Input';
-import DateInput from '../../components/form/DateInput';
-import DateShow from '../../components/form/DateShow';
-import {styles,InputArea,NewText} from '../Style'
+import Api from '../../../Api';
+import Input from '../../../components/form/Input';
+import DateInput from '../../../components/form/DateInput';
+import DateShow from '../../../components/form/DateShow';
+import {styles,InputArea,NewText} from '../../Style'
 
 /*Icons*/
 import Email from '../../Resources/Icons/Email.svg';
@@ -105,9 +105,20 @@ export default function Main({ navigation }) {
   function errorTreatment(Field){
     if(errors[Field]){
       if(errors[Field].type=="pattern"){
-        return "O Email está incorreto";
-      }else if(errors[Field].type=="minLength"){
-        return "O Telefone está Incompleto";
+        if(Field=="Email"){
+          return "O Email está incorreto";
+        }
+        else if(Field=="Password"){
+          return "A Senha precisa Conter um Caracter Maiusculo";
+        }
+      }
+      else if(errors[Field].type=="minLength"){
+        if(Field=="PhoneNumber"){
+          return "O Telefone está Incompleto";
+        }
+        else if(Field=="Password"){
+          return "A Senha precisa Ter pelo menos 8 Digitos";
+        }
       }
       else{
         return "Campo Obrigatório";
@@ -131,13 +142,13 @@ export default function Main({ navigation }) {
       <Input IconSvg={User} Control={control} Name={"UserName"} Placeholder={"Nome de Usuário"}/>
       {errorTreatment("UserName") && <Text style={styles.TouchableTextStyle}>{errorTreatment("UserName")}</Text>}
 
-      <Input IconSvg={Email} Control={control} Name={"Email"} Placeholder={"Email"}/>
+      <Input IconSvg={Email} Control={control} Name={"Email"} Placeholder={"Email"} keyboardType={"email-address"}/>
       {errorTreatment("Email") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Email")}</Text>}
 
-      <Input IconSvg={Password} Control={control} Name={"Password"} Placeholder={"Senha"} Password={true}/>
+      <Input IconSvg={Password} Control={control} Name={"Password"} Placeholder={"Senha"} Password={true} SignUp={true}/>
       {errorTreatment("Password") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Password")}</Text>}
       
-      <Input IconSvg={Phone} Control={control} Name={"PhoneNumber"} Placeholder={"Número de Telefone"}/>
+      <Input IconSvg={Phone} Control={control} Name={"PhoneNumber"} Placeholder={"Número de Telefone"} maxLength={11} keyboardType={"phone-pad"}/>
       {errorTreatment("PhoneNumber") && <Text style={styles.TouchableTextStyle}>{errorTreatment("PhoneNumber")}</Text>}
       
       <DateShow IconSvg={Birth} Name={splitedPreviewDate} Color={PreviewDateColor} Opacity={PreviewDateOpacity} OnPressFunction={() => setModalVisible(true)}/>

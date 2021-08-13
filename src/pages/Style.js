@@ -19,7 +19,7 @@ export const NewText=styled.Text`
 export const styles=StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#712f45',
+        backgroundColor:'#68293f',
         padding:2,
     },
     ImageStyle:{

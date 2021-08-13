@@ -6,9 +6,9 @@ import Modal from 'react-native-modal';
 import { vw } from 'react-native-expo-viewport-units';
 
 /*My Components*/
-import {styles,InputArea,NewText} from '../Style';
-import Api from '../../Api';
-import Input from '../../components/form/Input';
+import {styles,InputArea,NewText} from '../../Style';
+import Api from '../../../Api';
+import Input from '../../../components/form/Input';
 
 /*Icons*/
 import Email from '../../Resources/Icons/Email.svg';
