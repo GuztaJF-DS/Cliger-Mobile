@@ -11,7 +11,7 @@ import Api from '../../../Api';
 import Input from '../../../components/form/Input';
 
 /*Icons*/
-import Email from '../../Resources/Icons/Email.svg';
+import Email from '../../../assets/Icons/Email.svg';
 
 export default function Main({navigation}){
     const [mail,setMail]=useState({});
@@ -96,7 +96,7 @@ export default function Main({navigation}){
 
             <View style={styles.Center}>
                 <ResponsiveImage 
-                source={require('../../Resources/Images/Cliger_Logo_TextOnly.png')}
+                source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
                 style={styles.ImageStyle}
                 initWidth="218"
                 initHeight="83.5"

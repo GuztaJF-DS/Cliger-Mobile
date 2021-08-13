@@ -11,8 +11,8 @@ import Api from '../../../Api';
 import Input from '../../../components/form/Input';
 
 /*Icons*/
-import Email from '../../Resources/Icons/Email.svg';
-import Password from '../../Resources/Icons/Password.svg';
+import Email from '../../../assets/Icons/Email.svg';
+import Password from '../../../assets/Icons/Password.svg';
 
 export default function Main({ navigation }) {
   const [login,setLogin]=useState({});
@@ -86,7 +86,7 @@ export default function Main({ navigation }) {
     <ScrollView style={styles.container}>
       <View style={styles.Center}>
         <ResponsiveImage 
-          source={require('../../Resources/Images/Cliger_Logo_TextOnly.png')}
+          source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
           style={styles.ImageStyle}
           initWidth="218"
           initHeight="83.5"

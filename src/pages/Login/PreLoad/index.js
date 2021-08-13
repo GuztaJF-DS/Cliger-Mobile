@@ -57,7 +57,7 @@ export default function Main({navigation}){
     return(
         <ScrollView style={styles.container}>
             <ResponsiveImage
-                source={require('../../Resources/Images/CligerBigLogo.png')}
+                source={require('../../../assets/Images/CligerBigLogo.png')}
                 style={styles.ImageStyle}
                 initWidth="418"
                 initHeight="270"

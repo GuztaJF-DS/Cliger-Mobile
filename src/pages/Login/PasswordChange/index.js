@@ -9,7 +9,7 @@ import Api from '../../../Api';
 import Input from '../../../components/form/Input';
 
 /*Icons*/
-import Password from '../../Resources/Icons/Password.svg';
+import Password from '../../../assets/Icons/Password.svg';
 
 export default function Main({navigation,route}){
     const [password,setPassword]=useState({});
@@ -72,7 +72,7 @@ export default function Main({navigation,route}){
         <ScrollView style={styles.container}>
             <View style={styles.Center}>
                 <ResponsiveImage 
-                source={require('../../Resources/Images/Cliger_Logo_TextOnly.png')}
+                source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
                 style={styles.ImageStyle}
                 initWidth="218"
                 initHeight="83.5"

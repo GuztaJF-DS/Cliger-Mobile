@@ -9,7 +9,7 @@ import Api from '../../../Api';
 import Input from '../../../components/form/Input';
 
 /*Icons*/
-import Mail from '../../Resources/Icons/Email.svg';
+import Mail from '../../../assets/Icons/Email.svg';
 
 export default function Main({navigation,route}){
     const [mail,setMail]=useState({});
@@ -77,7 +77,7 @@ export default function Main({navigation,route}){
         <ScrollView style={styles.container}>
             <View style={styles.Center}>
                 <ResponsiveImage 
-                source={require('../../Resources/Images/Cliger_Logo_TextOnly.png')}
+                source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
                 style={styles.ImageStyle}
                 initWidth="218"
                 initHeight="83.5"

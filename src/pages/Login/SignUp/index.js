@@ -13,11 +13,11 @@ import DateShow from '../../../components/form/DateShow';
 import {styles,InputArea,NewText} from '../../Style'
 
 /*Icons*/
-import Email from '../../Resources/Icons/Email.svg';
-import Password from '../../Resources/Icons/Password.svg';
-import Birth from '../../Resources/Icons/Birth.svg';
-import Phone from '../../Resources/Icons/Phone.svg';
-import User from '../../Resources/Icons/User.svg';
+import Email from '../../../assets/Icons/Email.svg';
+import Password from '../../../assets/Icons/Password.svg';
+import Birth from '../../../assets/Icons/Birth.svg';
+import Phone from '../../../assets/Icons/Phone.svg';
+import User from '../../../assets/Icons/User.svg';
 
 export default function Main({ navigation }) {
   const [product,setProduct]=useState([]);
@@ -133,7 +133,7 @@ export default function Main({ navigation }) {
     <ScrollView style={styles.container}>      
       <View style={styles.Center}>
       <ResponsiveImage 
-        source={require('../../Resources/Images/Cliger_Logo_TextOnly.png')}
+        source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
         style={{marginTop:'5%'}}
         initWidth="180"
         initHeight="68.2"
