@@ -9,13 +9,13 @@ const MenuInput=styled.TouchableOpacity`
     align-items:center;
 `
 const MenuText=styled.Text`
-    textAlign:center
+    textAlign:center;
     font-size:${vw(4)}px;
     color:#ecb99b;
 `
 
 
-export default ({Name,IconSvg,Type})=>{
+export default ({Name,IconSvg,Type,OnPress})=>{
     let Size=(Type=="Large")?90:40;
     let IconWidth=(Type=="Large")?35:20;
 
@@ -33,7 +33,7 @@ export default ({Name,IconSvg,Type})=>{
     return(
         <MenuInputArea>
             <MenuInput
-                onPress={()=>{console.log('a')}}
+                onPress={OnPress}
             >
                 <IconSvg width={vw(IconWidth)} height={vh(15)}/>
                 <MenuText>{Name}</MenuText>
