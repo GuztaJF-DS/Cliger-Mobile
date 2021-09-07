@@ -1,6 +1,6 @@
 import React,{useState,useEffect}  from 'react';
-import { View,FlatList,TouchableOpacity,Text } from 'react-native';
-import { vw } from 'react-native-expo-viewport-units';
+import { View,FlatList,Text,Button } from 'react-native';
+import Modal from 'react-native-modal';
 
 /*My Components*/
 import { styles } from '../Style';
@@ -8,9 +8,10 @@ import Api from '../../Api';
 import { MiniStyle } from './Mini-Style';
 import List from '../../components/productComponents/List'
 import MenuHeader from '../../components/menuComponents/MenuHeader';
-import RotatedIcon from '../../components/productComponents/RotatedIcon';
+import ProductsOrder from '../../components/productComponents/ProductsOrder';
+import ProductContext from '../../contexts/ProductContext';
 
-export default function Products({route}){ 
+export default function Products({route,navigation}){ 
     const {UserId}=route.params;
 
     const [data,setData]=useState({});
@@ -18,8 +19,30 @@ export default function Products({route}){
     const [error,setError]=useState({});
     const [orderNum,setOrderNum]=useState(1);
     const [order,setOrder]=useState();
+    const [modalVisible,setModalVisible]=useState(false);
+    const [ProductId,setProductId]=useState('');
+    const [toDelete,setToDelete]=useState('');
 
-    
+  /*UseEffect: toDelete*/
+    useEffect(()=>{
+        async function DeleteData(){
+            try{
+                var DeleteInfo={"userId":UserId,"DeleteId":toDelete}
+                const response=await Api.post('/products/deleteOne',DeleteInfo);
+                setData(response.data.message);
+                setModalVisible(false);
+            }
+            catch(err){
+                console.log(err);
+                setError(err);
+            }
+        }
+        if(toDelete.length!=0){
+            DeleteData();
+        }
+    },[toDelete]);
+
+
   /*UseEffect: data*/
     useEffect(()=>{
         async function FetchData(){
@@ -27,6 +50,7 @@ export default function Products({route}){
                 var UserID={"userId":UserId};
                 const response=await Api.post('/products/GetAll',UserID);
                 setProducts(response.data)
+                setData("");
             }
             catch(err){
                 console.log(err);
@@ -35,7 +59,6 @@ export default function Products({route}){
         }
         FetchData();
     },[data]);
-
     
   /*UseEffect: orderNum,products*/
     useEffect(()=>{
@@ -48,7 +71,9 @@ export default function Products({route}){
             }
         }
         
-    },[orderNum,products])
+    },[orderNum,products]);
+
+    
 
   /*Front Page*/
     return(
@@ -56,36 +81,36 @@ export default function Products({route}){
             <MenuHeader Cash={20}/>
             {error.register && <Text>{error.register}</Text>}
 
+            <ProductContext.Provider value={{setModalVisible,setProductId,setOrderNum}}>
             <View style={MiniStyle.ListHeaderStyle}>
-                <TouchableOpacity onPress={()=>{
-                    (orderNum!=1)?setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))+setOrderNum(1)
-                    :setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))+setOrderNum(2)
-                }}>
-                    <Text style={{width:vw(80.4),color:"#ebb89b"}}>
-                        Nome
-                        <RotatedIcon Order={orderNum} Op={"1"}/>
-                    </Text>
-                </TouchableOpacity>
+            <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
+            <ProductsOrder Order={orderNum} Op={"2"} Name={"Preços"}/>
 
-                <TouchableOpacity onPress={()=>{
-                    (orderNum!=3)?setOrder(products.sort((a,b)=>{return a.Value-b.Value}))+setOrderNum(3)
-                    :setOrder(products.sort((a,b)=>{return b.Value-a.Value}))+setOrderNum(4)
-                }}>
-                    <Text style={{color:"#ebb89b"}}>
-                        Preço
-                        <RotatedIcon Order={orderNum} Op={"2"}/>
-                    </Text>
-                    
-                </TouchableOpacity>
+                <Modal
+                    isVisible={modalVisible}
+                    style={{justifyContent: 'flex-end',height:'10%'}}
+                >
+                    <Button
+                        title="Sair"
+                        onPress={() => setModalVisible(false)}
+                    />
+                    <Text style={{color:'white'}}>{ProductId}</Text>
+                    <Button
+                        title="Delete Product"
+                        onPress={()=>setToDelete(ProductId)}
+                    />
+
+                </Modal>
             </View>
-
             <FlatList
                 data={order}
                 renderItem={({item, index}) => (
                     <List Name={item.Name} Value={item.Value} Id={item.id}/>
                   )}
                   keyExtractor={(item) => item.id}
+                  extraData={data}
             />
+            </ProductContext.Provider>
         </View>
     )
 }

@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{useContext} from 'react';
+import ProductContext from '../../contexts/ProductContext';
+import { Button } from 'react-native';
 import styled from 'styled-components';
 import { vw } from 'react-native-expo-viewport-units';
+import Modal from 'react-native-modal';
 
 
 const ProductViewName=styled.View`
-    backgroundColor:#68293f;
     width:${vw(80)}px;
     borderLeftColor:#ebb89b;
     borderLeftWidth:2px;
@@ -35,18 +37,21 @@ const ProductText=styled.Text`
 `
 
 export default ({Name,Value,Id})=>{
+    const {setModalVisible,setProductId}=useContext(ProductContext);
+
     return(
         <ProductPress
             key={Id}
-            onPress={() => console.log(Value)}>
+            onPress={() => {setModalVisible(true), setProductId(Id)}}
+            underlayColor="#3d1322">
             <>
-                <ProductViewName>
-                        <ProductText>{Name}</ProductText>
+                <ProductViewName >
+                        <ProductText style={{fontSize:22}}>{Name}</ProductText>
                 </ProductViewName>
                 <ProductViewValue>
                         <ProductText style={{textAlign:"center"}}>{Value}$</ProductText>
                 </ProductViewValue>
-            </>
+             </>
         </ProductPress>
     )
 }
