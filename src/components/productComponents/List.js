@@ -1,9 +1,7 @@
 import React,{useContext} from 'react';
 import ProductContext from '../../contexts/ProductContext';
-import { Button } from 'react-native';
 import styled from 'styled-components';
 import { vw } from 'react-native-expo-viewport-units';
-import Modal from 'react-native-modal';
 
 
 const ProductViewName=styled.View`

@@ -1,16 +1,22 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { View,Text,TouchableOpacity } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import RotatedIcon from './RotatedIcon';
+import ProductContext from '../../contexts/ProductContext';
 
 export default ({Order,Op,Name})=>{
+    const {orderNum,setOrder,setOrderNum,products}=useContext(ProductContext);
 
     return(
     <View>
-        <TouchableOpacity onPress={()=>{/*
-            (orderNum!=1)?setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))+setOrderNum(1)
-            :setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))+setOrderNum(2)*/
-            console.log('a')
+        <TouchableOpacity onPress={()=>{
+            (Op==1)?
+            (orderNum!=1)?
+            setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))+setOrderNum(1)
+            :setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))+setOrderNum(2)
+            :(orderNum!=3)?
+            setOrder(products.sort((a,b)=>{return a.Value-b.Value}))+setOrderNum(3)
+            :setOrder(products.sort((a,b)=>{return b.Value-a.Value}))+setOrderNum(4)
         }}>
             <Text style={{width:vw(80.4),color:"#ebb89b"}}>
                 {Name}

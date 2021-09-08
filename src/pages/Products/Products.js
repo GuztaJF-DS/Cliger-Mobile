@@ -49,7 +49,7 @@ export default function Products({route,navigation}){
             try{
                 var UserID={"userId":UserId};
                 const response=await Api.post('/products/GetAll',UserID);
-                setProducts(response.data)
+                setProducts(response.data);
                 setData("");
             }
             catch(err){
@@ -65,13 +65,13 @@ export default function Products({route,navigation}){
         if(Object.values(products).length!=0){
             if(products.Message=="Not Found"){
                 setError({register:'Pelo visto você ainda não cadastrou nenhum produto'});
-            }    
-            else{
+            } 
+            else if(orderNum==1||!orderNum){
                 setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))
-            }
+            }  
         }
-        
     },[orderNum,products]);
+    
 
     
 
@@ -81,7 +81,7 @@ export default function Products({route,navigation}){
             <MenuHeader Cash={20}/>
             {error.register && <Text>{error.register}</Text>}
 
-            <ProductContext.Provider value={{setModalVisible,setProductId,setOrderNum}}>
+            <ProductContext.Provider value={{setModalVisible,setProductId,setOrder,setOrderNum,orderNum,products}}>
             <View style={MiniStyle.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
             <ProductsOrder Order={orderNum} Op={"2"} Name={"Preços"}/>
