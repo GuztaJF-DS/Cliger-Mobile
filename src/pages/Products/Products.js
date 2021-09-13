@@ -20,8 +20,9 @@ export default function Products({route,navigation}){
     const [orderNum,setOrderNum]=useState(1);
     const [order,setOrder]=useState();
     const [modalVisible,setModalVisible]=useState(false);
-    const [ProductId,setProductId]=useState('');
+    const [ProductData,setProductData]=useState([]);
     const [toDelete,setToDelete]=useState('');
+    
 
   /*UseEffect: toDelete*/
     useEffect(()=>{
@@ -69,11 +70,19 @@ export default function Products({route,navigation}){
             else if(orderNum==1||!orderNum){
                 setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))
             }  
+            else if(orderNum==2 && modalVisible==false){
+                setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))
+            }
+            else if(orderNum==3 && modalVisible==false){
+                setOrder(products.sort((a,b)=>{return a.Value-b.Value}))
+            }
+            else if(orderNum==4 && modalVisible==false){
+                setOrder(products.sort((a,b)=>{return b.Value-a.Value}))
+            }
         }
     },[orderNum,products]);
     
 
-    
 
   /*Front Page*/
     return(
@@ -81,23 +90,24 @@ export default function Products({route,navigation}){
             <MenuHeader Cash={20}/>
             {error.register && <Text>{error.register}</Text>}
 
-            <ProductContext.Provider value={{setModalVisible,setProductId,setOrder,setOrderNum,orderNum,products}}>
+            <ProductContext.Provider value={{setModalVisible,modalVisible,setProductData,ProductData,setOrder,setOrderNum,orderNum,products}}>
             <View style={MiniStyle.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
             <ProductsOrder Order={orderNum} Op={"2"} Name={"Preços"}/>
 
                 <Modal
                     isVisible={modalVisible}
-                    style={{justifyContent: 'flex-end',height:'10%'}}
+                    style={{height:'10%'}}
                 >
                     <Button
-                        title="Sair"
+                        title="Voltar"
                         onPress={() => setModalVisible(false)}
+                        color="#c22121"
                     />
-                    <Text style={{color:'white'}}>{ProductId}</Text>
+                    <Text style={{color:'white'}}>{ProductData.Name}</Text>
                     <Button
                         title="Delete Product"
-                        onPress={()=>setToDelete(ProductId)}
+                        onPress={()=>setToDelete(ProductData.id)}
                     />
 
                 </Modal>
@@ -105,10 +115,9 @@ export default function Products({route,navigation}){
             <FlatList
                 data={order}
                 renderItem={({item, index}) => (
-                    <List Name={item.Name} Value={item.Value} Id={item.id}/>
+                    <List Name={item.Name} Value={item.Value} Id={item.id} all={item}/>
                   )}
                   keyExtractor={(item) => item.id}
-                  extraData={data}
             />
             </ProductContext.Provider>
         </View>

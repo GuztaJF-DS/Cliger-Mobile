@@ -34,20 +34,20 @@ const ProductText=styled.Text`
     color:#ebb89b;
 `
 
-export default ({Name,Value,Id})=>{
-    const {setModalVisible,setProductId}=useContext(ProductContext);
+export default ({all})=>{
+    const {setModalVisible,setProductData}=useContext(ProductContext);
 
     return(
         <ProductPress
-            key={Id}
-            onPress={() => {setModalVisible(true), setProductId(Id)}}
+            key={all.Id}
+            onPress={() => {setModalVisible(true),setProductData(all)}}
             underlayColor="#3d1322">
             <>
                 <ProductViewName >
-                        <ProductText style={{fontSize:22}}>{Name}</ProductText>
+                        <ProductText style={{fontSize:22}}>{all.Name}</ProductText>
                 </ProductViewName>
                 <ProductViewValue>
-                        <ProductText style={{textAlign:"center"}}>{Value}$</ProductText>
+                        <ProductText style={{textAlign:"center"}}>{all.Value}$</ProductText>
                 </ProductViewValue>
              </>
         </ProductPress>
