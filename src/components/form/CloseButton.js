@@ -6,21 +6,25 @@ const InputView=styled.View`
     width:${vw(7)}px;
     height:${vw(7)}px;
     borderRadius:${vw(7)/2}px;
-    borderColor:#db0408;
     justify-content:center;
     alignItems:center;
-    borderWidth:2px;
 `
 
 const CloseInput=styled.TouchableOpacity`
-    width:100%;
+    width:${vw(7)}px;
+    height:${vw(7)}px;
+    borderRadius:${vw(7)/2}px;
+    borderColor:#610204;
+    borderWidth:1px;
+    elevation:2;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    backgroundColor:#960306;
 `
 
 const MenuText=styled.Text`
-    color:#db0408;
+    color:#ffffff;
     font-size:${vw(7)/2}px;
 `
 

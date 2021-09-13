@@ -3,10 +3,8 @@ import { Controller } from 'react-hook-form';
 import styled from 'styled-components/native';
 
 const InputArea=styled.View`
-  margin-top:7%;
-  margin-left:5px;
-  width:97%;
-  height:50px;
+  width:75%;
+  height:40px;
   flex-direction:row;
   padding-left:15px;
   align-items:center;
@@ -25,7 +23,7 @@ const FormInput =styled.TextInput`
   margin-left:5px;
 `
 
-export default ({IconSvg,Control,Name,Placeholder,Password,maxLength,keyboardType,SignUp})=>{
+export default ({Control,Name,Placeholder,Password,maxLength,keyboardType,SignUp,defaultValue})=>{
     return(
       <InputArea>
       <Controller
@@ -33,7 +31,6 @@ export default ({IconSvg,Control,Name,Placeholder,Password,maxLength,keyboardTyp
           rules={{
            required: true,
            pattern:(Name=="Email")? /^\S+@\S+$/i:(Name=="Password" && SignUp===true)?/[A-Z]+/:null,
-           minLength:(Name=="PhoneNumber")?11:(Name=="Password" && SignUp===true)?8:null
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <>
@@ -50,9 +47,8 @@ export default ({IconSvg,Control,Name,Placeholder,Password,maxLength,keyboardTyp
             </>
           )}
           name={Name}
-          defaultValue=""
+          defaultValue={defaultValue}
         />
-      <IconSvg width="24" height="24"/>
         </InputArea>
 
     )

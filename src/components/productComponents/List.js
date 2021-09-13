@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useEffect,useContext} from 'react';
 import ProductContext from '../../contexts/ProductContext';
 import styled from 'styled-components';
 import { vw } from 'react-native-expo-viewport-units';
@@ -35,7 +35,13 @@ const ProductText=styled.Text`
 `
 
 export default ({all})=>{
-    const {setModalVisible,setProductData}=useContext(ProductContext);
+    const {setModalVisible,setProductData,ProductData,products}=useContext(ProductContext);
+
+    useEffect(()=>{
+        if(all.id==ProductData.id){
+            setProductData(all)
+        }
+    },[products])
 
     return(
         <ProductPress

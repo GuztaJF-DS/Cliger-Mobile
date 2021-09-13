@@ -1,5 +1,5 @@
 import React,{useState,useEffect}  from 'react';
-import { View,FlatList,Text,Button, ImageBackground } from 'react-native';
+import { View,FlatList,Text,Button } from 'react-native';
 import Modal from 'react-native-modal';
 
 /*My Components*/
@@ -11,6 +11,7 @@ import MenuHeader from '../../components/menuComponents/MenuHeader';
 import ProductsOrder from '../../components/productComponents/ProductsOrder';
 import ProductContext from '../../contexts/ProductContext';
 import CloseButton from '../../components/form/CloseButton';
+import ProductDataInput from '../../components/productComponents/productDataInput';
 
 export default function Products({route,navigation}){ 
     const {UserId}=route.params;
@@ -23,6 +24,7 @@ export default function Products({route,navigation}){
     const [modalVisible,setModalVisible]=useState(false);
     const [ProductData,setProductData]=useState([]);
     const [toDelete,setToDelete]=useState('');
+    const [updateData,setUpdateData]=useState({})
     
 
   /*UseEffect: toDelete*/
@@ -39,9 +41,7 @@ export default function Products({route,navigation}){
                 setError(err);
             }
         }
-        if(toDelete.length!=0){
             DeleteData();
-        }
     },[toDelete]);
 
 
@@ -61,23 +61,43 @@ export default function Products({route,navigation}){
         }
         FetchData();
     },[data]);
+
+    useEffect(()=>{
+        async function Update(){
+            try{
+                let updateDataLenght=JSON.stringify(updateData).length;
+                let UpdateJSON='{"id":'+ProductData.id+',"userId":'+UserId+','+JSON.stringify(updateData).substring(1,updateDataLenght-1)+'}'
+                const response=await Api.post('products/Update',JSON.parse(UpdateJSON));
+                setData(response.data.message);
+            }
+            catch(err){
+                console.log(err);
+                setError(err);
+            }            
+        }
+        if(Object.values(updateData).length!=0){
+            Update()
+        }
+    },[updateData])
     
   /*UseEffect: orderNum,products*/
     useEffect(()=>{
         if(Object.values(products).length!=0){
-            if(products.Message=="Not Found"){
+            if(products.message=="Not Found"){
                 setError({register:'Pelo visto você ainda não cadastrou nenhum produto'});
             } 
             else if(orderNum==1||!orderNum){
+                console.log('entroiu')
                 setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))
             }  
-            else if(orderNum==2 && modalVisible==false){
+            else if(orderNum==2){
+                console.log('entroi2')
                 setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))
             }
-            else if(orderNum==3 && modalVisible==false){
+            else if(orderNum==3){
                 setOrder(products.sort((a,b)=>{return a.Value-b.Value}))
             }
-            else if(orderNum==4 && modalVisible==false){
+            else if(orderNum==4){
                 setOrder(products.sort((a,b)=>{return b.Value-a.Value}))
             }
         }
@@ -91,7 +111,7 @@ export default function Products({route,navigation}){
             <MenuHeader Cash={20}/>
             {error.register && <Text>{error.register}</Text>}
 
-            <ProductContext.Provider value={{setModalVisible,setProductData,setOrder,setOrderNum,orderNum,products}}>
+            <ProductContext.Provider value={{setModalVisible,ProductData,setProductData,setUpdateData,setOrder,setOrderNum,orderNum,products}}>
             <View style={MiniStyle.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
             <ProductsOrder Order={orderNum} Op={"2"} Name={"Preços"}/>
@@ -99,18 +119,28 @@ export default function Products({route,navigation}){
                 <Modal
                     isVisible={modalVisible}
                 >
+                <View
+                    style={{
+                        backgroundColor:"#471023",
+                        padding:10,
+                        borderRadius:5,
+                    }}
+                >
                  <CloseButton OnPressfunction={() => setModalVisible(false)}/>
-                 
-                    <Text style={{color:'white'}}>Código: {ProductData.Code}</Text>
-                    <Text style={{color:'white'}}>Nome: {ProductData.Name}</Text>
-                    <Text style={{color:'white'}}>Preço: {ProductData.Value}</Text>
-                    <Text style={{color:'white'}}>Descrição: {ProductData.Description}</Text>
-                    <Text style={{color:'white'}}>Tipo: {ProductData.Type}</Text>
-                    <Text style={{color:'white'}}>Total em Estoque: {ProductData.TotalAmount}</Text>
+                    
+                 <ProductDataInput TrueName={"Code"} Name={'Código'} Data={ProductData.Code} KeyboardType={"numeric"}/>
+                 <ProductDataInput TrueName={"Name"} Name={'Nome'} Data={ProductData.Name} KeyboardType={"default"}/>
+                 <ProductDataInput TrueName={"Value"} Name={'Preço'} Data={ProductData.Value} KeyboardType={"numeric"}/>
+                 <ProductDataInput TrueName={"Description"} Name={'Descrição'} Data={ProductData.Description} KeyboardType={"default"}/>
+                 <ProductDataInput TrueName={"Type"} Name={'Tipo'} Data={ProductData.Type} KeyboardType={"default"}/>
+                 <ProductDataInput TrueName={"TotalAmount"} Name={'Total em Estoque'} Data={ProductData.TotalAmount} KeyboardType={"numeric"}/>
+
                     <Button
                         title="Delete Product"
+                        color="#960306"
                         onPress={()=>setToDelete(ProductData.id)}
                     />
+                </View>
                 </Modal>
             </View>
             <FlatList
@@ -119,6 +149,7 @@ export default function Products({route,navigation}){
                     <List Name={item.Name} Value={item.Value} Id={item.id} all={item}/>
                   )}
                   keyExtractor={(item) => item.id}
+                extraData={data}
             />
             </ProductContext.Provider>
         </View>

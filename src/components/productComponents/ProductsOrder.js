@@ -10,13 +10,15 @@ export default ({Order,Op,Name})=>{
     return(
     <View>
         <TouchableOpacity onPress={()=>{
-            (Op==1)?
-            (orderNum!=1)?
-            setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))+setOrderNum(1)
-            :setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))+setOrderNum(2)
-            :(orderNum!=3)?
-            setOrder(products.sort((a,b)=>{return a.Value-b.Value}))+setOrderNum(3)
-            :setOrder(products.sort((a,b)=>{return b.Value-a.Value}))+setOrderNum(4)
+            (products.message!="Not Found")?
+                (Op==1)?
+                    (orderNum!=1)?
+                        setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))+setOrderNum(1)
+                        :setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))+setOrderNum(2)
+                    :(orderNum!=3)?
+                        setOrder(products.sort((a,b)=>{return a.Value-b.Value}))+setOrderNum(3)
+                        :setOrder(products.sort((a,b)=>{return b.Value-a.Value}))+setOrderNum(4)
+            :null
         }}>
             <Text style={{width:vw(80.4),color:"#ebb89b"}}>
                 {Name}
