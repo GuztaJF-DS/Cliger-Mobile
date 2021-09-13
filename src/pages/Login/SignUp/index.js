@@ -11,6 +11,7 @@ import Input from '../../../components/form/Input';
 import DateInput from '../../../components/form/DateInput';
 import DateShow from '../../../components/form/DateShow';
 import {styles,InputArea,NewText} from '../../Style'
+import CloseButton from '../../../components/form/CloseButton';
 
 /*Icons*/
 import Email from '../../../assets/Icons/Email.svg';
@@ -132,13 +133,14 @@ export default function Main({ navigation }) {
   return (
     <ScrollView style={styles.container}>      
       <View style={styles.Center}>
-      <ResponsiveImage 
-        source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
-        style={{marginTop:'5%'}}
-        initWidth="180"
-        initHeight="68.2"
-      />
+        <ResponsiveImage 
+          source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
+          style={{marginTop:'5%'}}
+          initWidth="180"
+          initHeight="68.2"
+        />
       </View>
+
       <Input IconSvg={User} Control={control} Name={"UserName"} Placeholder={"Nome de Usuário"}/>
       {errorTreatment("UserName") && <Text style={styles.TouchableTextStyle}>{errorTreatment("UserName")}</Text>}
 
@@ -152,17 +154,26 @@ export default function Main({ navigation }) {
       {errorTreatment("PhoneNumber") && <Text style={styles.TouchableTextStyle}>{errorTreatment("PhoneNumber")}</Text>}
       
       <DateShow IconSvg={Birth} Name={splitedPreviewDate} Color={PreviewDateColor} Opacity={PreviewDateOpacity} OnPressFunction={() => setModalVisible(true)}/>
-      <Modal
-        isVisible={modalVisible}
-        style={{justifyContent: 'flex-end',height:'10%'}}
-      >
-        <Button
-          title="Sair"
-          onPress={() => setModalVisible(false)}
-        />
-        <DateInput Control={control} Name={"BirthDate"}/>
+      
+        <Modal
+          isVisible={modalVisible}
+          style={{justifyContent: 'flex-end',height:'10%'}}
+        >
+          <View style={{
+              backgroundColor: '#fee2cf',
+              padding: 22,
+              justifyContent: 'center',
+              borderRadius: 4,
+              borderColor: 'rgba(0, 0, 0, 0.1)',
+          }}>
+          <CloseButton
+            OnPressfunction={() => setModalVisible(false)}
+          />
+          <DateInput Control={control} Name={"BirthDate"}/>
+          </View>
 
-      </Modal>
+        </Modal>
+
       {BirthDateTreatment() && <Text style={styles.TouchableTextStyle}>{BirthDateTreatment()}</Text>}
       <View style={styles.Center}>
         <InputArea 

@@ -1,5 +1,5 @@
 import React,{useState,useEffect}  from 'react';
-import { View,FlatList,Text,Button } from 'react-native';
+import { View,FlatList,Text,Button, ImageBackground } from 'react-native';
 import Modal from 'react-native-modal';
 
 /*My Components*/
@@ -10,6 +10,7 @@ import List from '../../components/productComponents/List'
 import MenuHeader from '../../components/menuComponents/MenuHeader';
 import ProductsOrder from '../../components/productComponents/ProductsOrder';
 import ProductContext from '../../contexts/ProductContext';
+import CloseButton from '../../components/form/CloseButton';
 
 export default function Products({route,navigation}){ 
     const {UserId}=route.params;
@@ -90,26 +91,26 @@ export default function Products({route,navigation}){
             <MenuHeader Cash={20}/>
             {error.register && <Text>{error.register}</Text>}
 
-            <ProductContext.Provider value={{setModalVisible,modalVisible,setProductData,ProductData,setOrder,setOrderNum,orderNum,products}}>
+            <ProductContext.Provider value={{setModalVisible,setProductData,setOrder,setOrderNum,orderNum,products}}>
             <View style={MiniStyle.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
             <ProductsOrder Order={orderNum} Op={"2"} Name={"Preços"}/>
 
                 <Modal
                     isVisible={modalVisible}
-                    style={{height:'10%'}}
                 >
-                    <Button
-                        title="Voltar"
-                        onPress={() => setModalVisible(false)}
-                        color="#c22121"
-                    />
-                    <Text style={{color:'white'}}>{ProductData.Name}</Text>
+                 <CloseButton OnPressfunction={() => setModalVisible(false)}/>
+                 
+                    <Text style={{color:'white'}}>Código: {ProductData.Code}</Text>
+                    <Text style={{color:'white'}}>Nome: {ProductData.Name}</Text>
+                    <Text style={{color:'white'}}>Preço: {ProductData.Value}</Text>
+                    <Text style={{color:'white'}}>Descrição: {ProductData.Description}</Text>
+                    <Text style={{color:'white'}}>Tipo: {ProductData.Type}</Text>
+                    <Text style={{color:'white'}}>Total em Estoque: {ProductData.TotalAmount}</Text>
                     <Button
                         title="Delete Product"
                         onPress={()=>setToDelete(ProductData.id)}
                     />
-
                 </Modal>
             </View>
             <FlatList
