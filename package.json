@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "android-no-jet":"react-native run-android --no-jetifier",
+    "android-no-jet": "react-native run-android --no-jetifier",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.5",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-picker/picker": "^2.1.0",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
     "axios": "^0.21.1",
@@ -24,6 +25,7 @@
     "react-native-expo-viewport-units": "^0.0.8",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-modal": "^12.0.3",
+    "react-native-picker-select": "^8.0.4",
     "react-native-reanimated": "^2.2.0",
     "react-native-responsive-image": "^2.3.1",
     "react-native-safe-area-context": "^3.2.0",

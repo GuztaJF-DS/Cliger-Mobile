@@ -28,7 +28,8 @@ export const styles=StyleSheet.create({
         alignItems: 'center',
     },
     TouchableTextStyle:{
-        color:'#ebb89b'
+        color:'#ebb89b',
+        marginLeft:6
     },
     TouchableBoldTextStyle:{
         color:'#ebb89b',

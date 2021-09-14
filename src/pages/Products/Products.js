@@ -87,11 +87,9 @@ export default function Products({route,navigation}){
                 setError({register:'Pelo visto você ainda não cadastrou nenhum produto'});
             } 
             else if(orderNum==1||!orderNum){
-                console.log('entroiu')
                 setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))
             }  
             else if(orderNum==2){
-                console.log('entroi2')
                 setOrder(products.sort((a,b)=>b.Name.localeCompare(a.Name)))
             }
             else if(orderNum==3){
@@ -127,7 +125,7 @@ export default function Products({route,navigation}){
                     }}
                 >
                  <CloseButton OnPressfunction={() => setModalVisible(false)}/>
-                    
+                 
                  <ProductDataInput TrueName={"Code"} Name={'Código'} Data={ProductData.Code} KeyboardType={"numeric"}/>
                  <ProductDataInput TrueName={"Name"} Name={'Nome'} Data={ProductData.Name} KeyboardType={"default"}/>
                  <ProductDataInput TrueName={"Value"} Name={'Preço'} Data={ProductData.Value} KeyboardType={"numeric"}/>

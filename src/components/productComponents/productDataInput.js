@@ -2,12 +2,12 @@ import React,{useState,useContext} from 'react';
 import {View,Text} from 'react-native';
 import styled from 'styled-components';
 import LightInput from '../form/LightInput';
+import InputPicker from '../form/InputPicker';
 import { useForm } from 'react-hook-form';
 import ProductContext from '../../contexts/ProductContext';
 
 const EditButton=styled.TouchableOpacity`
     borderRadius:4px;
-    borderColor:#fff;
     borderWidth:1px;
     padding:2px;
     justifyContent:center;
@@ -33,16 +33,24 @@ export default function ProductDataInput({Data,Name,TrueName,KeyboardType}){
         }}>
             {(editing!=true)?
             <>
-                <Text style={{color:'white',fontSize:17}}>{Name}: {Data}</Text> 
-                <EditButton onPress={()=>setEditing(!editing)}>
+                <Text style={{color:'white',width:'80%',fontSize:17}}>{Name}: {Data}</Text> 
+                <EditButton style={{borderColor:"#fff"}} onPress={()=>setEditing(!editing)}>
                     <Text style={{color:'white',fontSize:17}}>
                         Editar
                     </Text>
                 </EditButton>
-            </>:
+            </>:(TrueName!="Type")?
             <>
                 <LightInput Control={control} Name={TrueName}  Placeholder={Name} keyboardType={KeyboardType} defaultValue={String(Data)}/>
-                    <EditButton onPress={handleSubmit(onSubmit)}>
+                    <EditButton style={{borderColor:"green"}} onPress={handleSubmit(onSubmit)}>
+                    <Text style={{color:'green',fontSize:17}}>
+                        Concluir
+                    </Text>
+                </EditButton>
+            </>:
+            <>
+                <InputPicker Control={control} Name={TrueName}/>
+                    <EditButton style={{borderColor:"green"}} onPress={handleSubmit(onSubmit)}>
                     <Text style={{color:'green',fontSize:17}}>
                         Concluir
                     </Text>
