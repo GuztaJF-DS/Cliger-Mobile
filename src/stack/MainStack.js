@@ -9,6 +9,7 @@ import EmailCheckToken from '../pages/Login/EmailCheckToken/index'
 import PasswordChange from '../pages/Login/PasswordChange/index'
 import Main from '../pages/MainMenu/index';
 import Products from '../pages/Products/Products';
+import Finances from '../pages/Finance/index';
 
 export default()=>{
   const Stack=createStackNavigator();
@@ -28,6 +29,7 @@ export default()=>{
     <Stack.Screen name="PasswordChange" component={PasswordChange}/>
     <Stack.Screen name="Main" component={Main}/>
     <Stack.Screen name="Products" component={Products}/>
+    <Stack.Screen name="Finances" component={Finances}/>
     </Stack.Navigator>
   )
 }

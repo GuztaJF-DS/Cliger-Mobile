@@ -18,9 +18,10 @@ export default function Main({navigation,route}){
   /*UseEffect: road*/
     useEffect(()=>{
         if(Object.values(road).length!=0){
-            navigation.navigate('Products',{
+            navigation.navigate(road,{
                 UserId:Id
             })
+            setRoad('');
         }
     },[road])
 
@@ -29,7 +30,7 @@ export default function Main({navigation,route}){
         <View style={{flex:1,backgroundColor:'#68293f',}}>
             <MenuHeader Cash={"20"}/>
             <View style={styles.Center}>
-                <MenuButton Type={"Large"} IconSvg={Finances} Name={"Dados Financeiros"}/>
+                <MenuButton Type={"Large"} IconSvg={Finances} OnPress={()=>setRoad("Finances")} Name={"Dados Financeiros"}/>
                 <MenuButton Type={"Large"} IconSvg={Schedule} Name={"Agenda"}/>
             </View>
             <View style={{alignItems: 'center',flexDirection:'row',justifyContent:'space-around'}}>

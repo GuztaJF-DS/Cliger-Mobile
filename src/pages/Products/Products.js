@@ -59,9 +59,10 @@ export default function Products({route,navigation}){
                 setError(err);
             }
         }
-        FetchData();
+            FetchData();
     },[data]);
 
+  /*UseEffect: updateData*/
     useEffect(()=>{
         async function Update(){
             try{
@@ -86,7 +87,7 @@ export default function Products({route,navigation}){
             if(products.message=="Not Found"){
                 setError({register:'Pelo visto você ainda não cadastrou nenhum produto'});
             } 
-            else if(orderNum==1||!orderNum){
+            else if(orderNum==1){
                 setOrder(products.sort((a,b)=>a.Name.localeCompare(b.Name)))
             }  
             else if(orderNum==2){
@@ -144,10 +145,9 @@ export default function Products({route,navigation}){
             <FlatList
                 data={order}
                 renderItem={({item, index}) => (
-                    <List Name={item.Name} Value={item.Value} Id={item.id} all={item}/>
+                    <List all={item}/>
                   )}
                   keyExtractor={(item) => item.id}
-                extraData={data}
             />
             </ProductContext.Provider>
         </View>
