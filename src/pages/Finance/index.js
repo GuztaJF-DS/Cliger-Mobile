@@ -27,7 +27,7 @@ export default function Finance({route,navigation}){
 
     return(
         <View style={styles.container}>
-            <MenuHeader Cash={40}/>
+            <MenuHeader userId={UserId}/>
             <LineGraphic data={salesData}/>
         </View>
     )

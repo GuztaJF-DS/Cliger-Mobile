@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import styled from 'styled-components/native';
 import { vh } from 'react-native-expo-viewport-units';
 import ResponsiveImage from "react-native-responsive-image";
+import Api from '../../Api'
 
 const Header=styled.View`
     width:100%;
@@ -29,7 +30,25 @@ const CashHeader=styled.View`
     justify-content:center;
 `
 
-export default({Cash})=>{
+
+export default function MenuHeader(userId){
+    const [cash,setCash]=useState(0);
+    const [data,setData]=useState('');
+
+    useEffect(()=>{
+        async function FetchCash(){
+            try{
+                const response= await Api.post('/finance/getAll',{"userId":userId.userId});
+                let x=response.data.length;
+                setCash(response.data[x-1].CurrentBalance);
+                setData('a');
+            }catch(err){
+                console.log(err)
+            }
+        }
+        FetchCash();
+    },[data])
+
     return(
         <>
         <Header>
@@ -40,7 +59,7 @@ export default({Cash})=>{
             />
         </Header>
         <CashHeader>
-            <CashInfo>Saldo: R$ {Cash}</CashInfo> 
+            <CashInfo>Saldo: R$ {cash}</CashInfo> 
         </CashHeader>
         </>
     )

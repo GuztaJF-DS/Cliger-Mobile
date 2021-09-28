@@ -107,7 +107,7 @@ export default function Products({route,navigation}){
   /*Front Page*/
     return(
         <View style={styles.container}>
-            <MenuHeader Cash={20}/>
+        <MenuHeader userId={UserId}/>
             {error.register && <Text>{error.register}</Text>}
 
             <ProductContext.Provider value={{setModalVisible,ProductData,setProductData,setUpdateData,setOrder,setOrderNum,orderNum,products}}>

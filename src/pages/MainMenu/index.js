@@ -28,7 +28,7 @@ export default function Main({navigation,route}){
   /*Front Page*/
     return(
         <View style={{flex:1,backgroundColor:'#68293f',}}>
-            <MenuHeader Cash={"20"}/>
+            <MenuHeader userId={Id}/>
             <View style={styles.Center}>
                 <MenuButton Type={"Large"} IconSvg={Finances} OnPress={()=>setRoad("Finances")} Name={"Dados Financeiros"}/>
                 <MenuButton Type={"Large"} IconSvg={Schedule} Name={"Agenda"}/>
