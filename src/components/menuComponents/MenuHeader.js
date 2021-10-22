@@ -39,9 +39,11 @@ export default function MenuHeader(userId){
         async function FetchCash(){
             try{
                 const response= await Api.post('/finance/getAll',{"userId":userId.userId});
-                let x=response.data.length;
-                setCash(response.data[x-1].CurrentBalance);
-                setData('a');
+                if(Object.values(response.data).length!=0){
+                    let x=response.data.length;
+                    setCash(response.data[x-1].CurrentBalance);
+                    setData('a');
+                }
             }catch(err){
                 console.log(err)
             }

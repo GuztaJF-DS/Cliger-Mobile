@@ -5,8 +5,7 @@ import styled from 'styled-components/native';
 import { Picker } from '@react-native-picker/picker';
 
 const InputArea=styled.View`
-  width:75%;
-  height:40px;
+  height:45px;
   flex-direction:row;
   padding-left:15px;
   align-items:center;
@@ -15,11 +14,13 @@ const InputArea=styled.View`
   border-bottom-color:#ecb99b;
   border-left-width: 2px;
   border-left-color:#ecb99b;
-  border-bottom-left-radius: 17px
-  border-top-left-radius: 12px
+  border-bottom-left-radius: 17px;
+  border-top-left-radius: 12px;
+  margin-top:10px;
 `
+ 
+export default ({Control,Name,Values})=>{
 
-export default ({Control,Name})=>{
     return(
       <InputArea>
       <Controller
@@ -39,13 +40,12 @@ export default ({Control,Name})=>{
                 selectedValue={value}
                 style={{color:'white'}}
               >
-                <Picker.Item label="Produto" value="Produto"/>
-                <Picker.Item label="Serviço" value="Serviço"/>
+                {Values.map(Item=>(<Picker.Item key={Item.indexOf(Item)} label={Item} value={Item}/>))}
               </Picker>
             </View>
           )}
           name={Name}
-          defaultValue=""
+          defaultValue={Values[0]}
         />
         </InputArea>
 

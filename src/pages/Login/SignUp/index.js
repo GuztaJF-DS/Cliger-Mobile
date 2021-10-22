@@ -35,6 +35,7 @@ export default function Main({ navigation }) {
     async function fetchData() {
       try{
         if(Object.values(dados).length!=0){
+          console.log(dados);
           const response=await Api.post('/auth/register',dados);
           setProduct(response.data);
         }

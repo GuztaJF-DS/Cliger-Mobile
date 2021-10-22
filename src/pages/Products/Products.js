@@ -108,7 +108,7 @@ export default function Products({route,navigation}){
     return(
         <View style={styles.container}>
         <MenuHeader userId={UserId}/>
-            {error.register && <Text>{error.register}</Text>}
+            {error.register && <Text style={{color:"#ebb89b"}} >{error.register}</Text>}
 
             <ProductContext.Provider value={{setModalVisible,ProductData,setProductData,setUpdateData,setOrder,setOrderNum,orderNum,products}}>
             <View style={MiniStyle.ListHeaderStyle}>

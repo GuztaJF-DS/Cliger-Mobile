@@ -13,6 +13,7 @@ export const InputArea=styled.TouchableHighlight`
 
 export const NewText=styled.Text`
   font-Size:${vw(7)}px;
+  textAlign:center;
   color:#ebb89b;
 `
 

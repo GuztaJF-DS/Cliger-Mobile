@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react';
+import React,{ useState,useContext } from 'react';
 import {View,Text} from 'react-native';
 import styled from 'styled-components';
 import LightInput from '../form/LightInput';
@@ -41,15 +41,30 @@ export default function ProductDataInput({Data,Name,TrueName,KeyboardType}){
                 </EditButton>
             </>:(TrueName!="Type")?
             <>
-                <LightInput Control={control} Name={TrueName}  Placeholder={Name} keyboardType={KeyboardType} defaultValue={String(Data)}/>
+                <View
+                    style={{
+                        width:'75%',
+                        justifyContent: 'space-between'
+                    }}
+                >
+                    <LightInput Control={control} Name={TrueName}  Placeholder={Name} keyboardType={KeyboardType} defaultValue={String(Data)}/>
+                </View>
                     <EditButton style={{borderColor:"green"}} onPress={handleSubmit(onSubmit)}>
                     <Text style={{color:'green',fontSize:17}}>
                         Concluir
                     </Text>
                 </EditButton>
-            </>:
+            </>
+            :
             <>
-                <InputPicker Control={control} Name={TrueName}/>
+                <View
+                    style={{
+                        width:'75%',
+                        justifyContent: 'space-between'
+                    }}
+                >
+                <InputPicker Control={control} Name={TrueName} Values={["Produto","Serviço"]}/>
+                </View>
                     <EditButton style={{borderColor:"green"}} onPress={handleSubmit(onSubmit)}>
                     <Text style={{color:'green',fontSize:17}}>
                         Concluir

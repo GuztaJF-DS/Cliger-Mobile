@@ -3,8 +3,7 @@ import { Controller } from 'react-hook-form';
 import styled from 'styled-components/native';
 
 const InputArea=styled.View`
-  width:75%;
-  height:40px;
+  height:45px;
   flex-direction:row;
   padding-left:15px;
   align-items:center;
@@ -13,8 +12,9 @@ const InputArea=styled.View`
   border-bottom-color:#ecb99b;
   border-left-width: 2px;
   border-left-color:#ecb99b;
-  border-bottom-left-radius: 17px
-  border-top-left-radius: 12px
+  border-bottom-left-radius: 17px;
+  border-top-left-radius: 12px;
+  margin-top:10px
 `
 
 const FormInput =styled.TextInput`
