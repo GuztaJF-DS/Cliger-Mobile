@@ -53,7 +53,7 @@ export default function LineGraphic({data}){
                 yDomain={{ min: 0 , max: HigherValueY+(HigherValueY-(HigherValueY/2)) }}
               >
               <VerticalAxis tickCount={4} theme={{labels:{label:{color:'#fff'}}}}/>
-              <Line tooltipComponent={<Tooltip />}  theme={{ stroke: { color: '#44bd32', width: 5 },scatter:{default:{width:8,height:8,rx:5,color:'#329923'}}}}/>
+              <Line tooltipComponent={<Tooltip/>}  theme={{ stroke: { color: '#44bd32', width: 5 },scatter:{default:{width:8,height:8,rx:5,color:'#329923'}}}}/>
               </Chart>}
             </View>
     )

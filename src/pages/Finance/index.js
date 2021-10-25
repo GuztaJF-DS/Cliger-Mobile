@@ -49,7 +49,7 @@ export default function Finance({route}){
     /*Submit Form's Function*/
     const onSubmit=(data)=>{
         setToWriteWeekend(data.Weekend)
-        let Info=BusinessProfit(0,data.FixedCosts,data.Avarage,31,data.Weekend);
+        let Info=BusinessProfit(data.FixedCosts,data.Avarage,data.Weekend);
         setProfitData(Info)
     }
 
