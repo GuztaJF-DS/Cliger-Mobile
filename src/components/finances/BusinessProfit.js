@@ -7,21 +7,20 @@ function Revenue(x,AvarageRevenue){
 export default function BusinessProfit(
   Costs,
   AvarageRevenue,
-  Stock,
   Weekend
 ){
     Weekend=(Weekend=="Fechado aos Sabados e Domingos")?false:true;
     let profitInfo="";
     let TotalRevenue=[];
     let TotalProfit=[];
-    let LowerValue=Stock+1;
     let TodayDate=new Date();
     let TotalDays=MonthFilter(TodayDate.getMonth()+1,TodayDate.getFullYear(),Weekend);
+    let LowerValue=TotalDays+1;
     let EstimatedProfit=Revenue(TotalDays,AvarageRevenue)-Costs;
     let IsProfitable=false;
 
     var x=0
-    while(x<=Stock){
+    while(x<=TotalDays){
       TotalRevenue[x]=Revenue(x,AvarageRevenue);
       TotalProfit[x]=TotalRevenue[x]-Costs;
 
@@ -32,7 +31,7 @@ export default function BusinessProfit(
         if(x==LowerValue && EstimatedProfit>0){
           profitInfo={"IsProfitable":true,"TotalDays":TotalDays,"Avarage":AvarageRevenue,"ToSale":x,"EstimatedProfit":EstimatedProfit,"TotalRevenue":TotalRevenue[x]};
           IsProfitable=true;
-          x=Stock;
+          x=TotalDays;
         }
       }
       x++;
