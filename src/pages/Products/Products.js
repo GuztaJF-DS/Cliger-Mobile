@@ -113,7 +113,7 @@ export default function Products({route,navigation}){
             <ProductContext.Provider value={{setModalVisible,ProductData,setProductData,setUpdateData,setOrder,setOrderNum,orderNum,products}}>
             <View style={MiniStyle.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
-            <ProductsOrder Order={orderNum} Op={"2"} Name={"Preços"}/>
+            <ProductsOrder Order={orderNum} Op={"2"} Name={"Preço"}/>
 
                 <Modal
                     isVisible={modalVisible}

@@ -33,7 +33,10 @@ export default function Finance({route}){
                 }
                 else if(dataType==='Sales'){
                     const response=await Api.post('/SalesRecord/getAll',{"userId":UserId});
-                    const RawData=response.data;
+
+                    const RawData=response.data; 
+                   
+                    console.log(RawData[RawData.length-1][16]); 
                     setFinanceData({"Type":"Sales",RawData});
                 }
             }catch(err){
@@ -70,8 +73,8 @@ export default function Finance({route}){
                     }}
                 >
                 <CloseButton OnPressfunction={()=>{setModalVisible(false)}}/>
-                <LightInput Control={control} Name={"FixedCosts"} Placeholder={"Custos Totais por mês"} defaultValue={""}/>
-                <LightInput Control={control} Name={"Avarage"} Placeholder={"Média da Renda Diária"} defaultValue={""}/>
+                <LightInput Control={control} Name={"FixedCosts"} Placeholder={"Custos Totais por mês"} keyboardType={"numeric"} defaultValue={""}/>
+                <LightInput Control={control} Name={"Avarage"} Placeholder={"Média da Renda Diária"} keyboardType={"numeric"} defaultValue={""}/>
                 <InputPicker Control={control} Name={"Weekend"} Values={["Fechado aos Sabados e Domingos","Fechado somente aos Domingos"]}/>
 
                 <TouchableHighlight onPress={handleSubmit(onSubmit)}>

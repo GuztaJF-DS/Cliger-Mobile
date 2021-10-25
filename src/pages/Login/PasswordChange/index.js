@@ -63,7 +63,21 @@ export default function Main({navigation,route}){
     /*Other Functions*/
     function errorTreatment(Field){
         if(errors[Field]){
-            return "Campo Obrigatório";
+            console.log(errors[Field])
+            if(errors[Field].type=="pattern"){
+                if(Field=="Password"){
+                    return "A Senha precisa Conter um Caracter Maiusculo";
+
+                }
+        }
+            else if(errors[Field].type=="minLength"){
+                if(Field=="Password"){
+                    return "A Senha precisa Ter pelo menos 8 Digitos";
+                }
+            }
+            else{
+                return "Campo Obrigatório";
+            }
         }
       }
 
@@ -75,14 +89,14 @@ export default function Main({navigation,route}){
                 source={require('../../../assets/Images/Cliger_Logo_TextOnly.png')}
                 style={styles.ImageStyle}
                 initWidth="218"
-                initHeight="83.5"
+                initHeight="83.5" 
                 />
             </View>
             <View style={styles.Center}>
             <Text style={{marginTop:"2%",color:"#ebb89b"}}>Digite a Sua Nova Senha</Text>
             </View>
 
-            <Input IconSvg={Password}  Control={control} Name={"Password"} Placeholder={"Senha"} Password={true}/>
+            <Input IconSvg={Password}  Control={control} Name={"Password"} Placeholder={"Senha"} SignUp={true} Password={true}/>
             {errorTreatment("Password") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Password")}</Text>}
 
             <View style={styles.Center}>

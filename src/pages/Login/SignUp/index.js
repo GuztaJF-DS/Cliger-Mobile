@@ -148,7 +148,7 @@ export default function Main({ navigation }) {
       <Input IconSvg={Email} Control={control} Name={"Email"} Placeholder={"Email"} keyboardType={"email-address"}/>
       {errorTreatment("Email") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Email")}</Text>}
 
-      <Input IconSvg={Password} Control={control} Name={"Password"} Placeholder={"Senha"} Password={true} SignUp={true}/>
+      <Input IconSvg={Password} Control={control} Name={"Password"} Placeholder={"Senha"} Password={true} SignUp={true}/> 
       {errorTreatment("Password") && <Text style={styles.TouchableTextStyle}>{errorTreatment("Password")}</Text>}
       
       <Input IconSvg={Phone} Control={control} Name={"PhoneNumber"} Placeholder={"Número de Telefone"} maxLength={11} keyboardType={"phone-pad"}/>

@@ -1,11 +1,13 @@
 import React from "react";
 import { View,Text } from "react-native";
-import {Chart,Line,Tooltip,VerticalAxis,HorizontalAxis} from 'react-native-responsive-linechart'
+import {Chart,Line,VerticalAxis,HorizontalAxis,Area} from 'react-native-responsive-linechart'
+
 
 export default function LineGraphic({data}){
   
     var obj=[]; 
     let HigherValueY=0;
+    let HigherValueX=0;
     let type=data.Type; 
     let FormatedData=(data.RawData===undefined)?"":data.RawData;
 
@@ -19,15 +21,22 @@ export default function LineGraphic({data}){
         break;
 
       case "Sales":
-        let unusedId=FormatedData.length;
-        for (var i in FormatedData){
+        let total=1;
+
+        for(var i in FormatedData){
           if(HigherValueY<FormatedData[i].TotalBuyPrice){
             HigherValueY=FormatedData[i].TotalBuyPrice;
           }
-          if(i!=unusedId-1){
-            obj.push({"x":`${i}`,"y":FormatedData[i].TotalBuyPrice});
-          }
+            if(i!=FormatedData.length-1){
+                if(i<FormatedData.length-1 && FormatedData[i].createdAt==FormatedData[parseInt(i)+1].createdAt){
+                    total++;
+                }else{
+                  obj.push({"meta":FormatedData[i].createdAt,"x":{i},"y":total})
+                    total=1
+                }
+            }
         }
+        console.log(obj)
         break;
 
         case "Finance":
@@ -40,7 +49,7 @@ export default function LineGraphic({data}){
           break;
 
     }
-    
+    HigherValueX=obj[obj.length-1].x; 
     return(
             <View>
               {type=="Nothing"?
@@ -49,11 +58,14 @@ export default function LineGraphic({data}){
                 style={{ height: 200, width: 380 }}
                 data={ obj }
                 padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
-                xDomain={{ min: 0, max: 2 }}
+                xDomain={{ min: 0, max: HigherValueX }}
                 yDomain={{ min: 0 , max: HigherValueY+(HigherValueY-(HigherValueY/2)) }}
+                viewport={{size:{width:(HigherValueX>=5)?5:parseInt(HigherValueX)}}}
               >
-              <VerticalAxis tickCount={4} theme={{labels:{label:{color:'#fff'}}}}/>
-              <Line tooltipComponent={<Tooltip/>}  theme={{ stroke: { color: '#44bd32', width: 5 },scatter:{default:{width:8,height:8,rx:5,color:'#329923'}}}}/>
+              <VerticalAxis tickCount={6} theme={{labels:{label:{color:'#fff'}}}}/>
+              <HorizontalAxis tickCount={parseInt(HigherValueX)+1} theme={{labels:{label:{color:'#fff'}}}}/>
+              <Line tooltipComponent={<Tooltip labelFormatter={v => v.toFixed(2)} />}  theme={{ stroke: { color: '#44bd32', width: 5 },scatter:{default:{width:8,height:8,rx:5,color:'#329923'}}}}/>
+              <Area theme={{gradient:{from :{color:'#44bd32'}}, to:{color:"#44bd32",opacity:0.8}}}/>
               </Chart>}
             </View>
     )
