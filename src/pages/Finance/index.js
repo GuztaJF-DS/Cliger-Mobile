@@ -17,7 +17,7 @@ import InputPicker from "../../components/form/InputPicker";
 export default function Finance({route}){
     const {UserId}=route.params;
     const [financeData,setFinanceData]=useState('');
-    const [dataType,setDataType]=useState('Finance');
+    const [dataType,setDataType]=useState('Saldo Total');
     const [modalVisible,setModalVisible]=useState(false);
     const [profitData,setProfitData]=useState('');
     const [toWriteWeekend,setToWriteWeekend]=useState('');
@@ -26,12 +26,12 @@ export default function Finance({route}){
     useEffect(()=>{
         async function fetchData(){
             try{
-                if(dataType==='Finance'){
+                if(dataType==='Saldo Total'){
                     const response=await Api.post('/finance/getAll',{"userId":UserId});
                     const RawData=response.data;
                     setFinanceData({"Type":"Finance",RawData});
                 }
-                else if(dataType==='Sales'){
+                else if(dataType==='Vendas'){
                     const response=await Api.post('/SalesRecord/getAll',{"userId":UserId});
 
                     const RawData=response.data; 
@@ -60,8 +60,8 @@ export default function Finance({route}){
     return(
         <View style={styles.container}>
             <MenuHeader userId={UserId}/>
+            <NewText>{dataType}</NewText>
             <LineGraphic data={financeData}/>
-            
             <Modal
                 isVisible={modalVisible}
             >
@@ -104,11 +104,13 @@ export default function Finance({route}){
             </Text>:null}
                 </View>
             </Modal>
+
+
             <View style={{
                 alignItems:'center'
             }}>
-                <InputArea onPress={()=>{setDataType('Finance')}}><NewText>Ver saldo total</NewText></InputArea>
-                <InputArea onPress={()=>{setDataType('Sales')}}><NewText>Ver Vendas</NewText></InputArea>
+                <InputArea onPress={()=>{setDataType('Saldo Total')}}><NewText>Ver saldo total</NewText></InputArea>
+                <InputArea onPress={()=>{setDataType('Vendas')}}><NewText>Ver Vendas</NewText></InputArea>
                 <InputArea onPress={()=>{setModalVisible(true)}}><NewText>Simular Lucro ao Fim do mês</NewText></InputArea>
             </View>
         </View>

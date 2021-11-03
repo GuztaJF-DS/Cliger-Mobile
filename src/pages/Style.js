@@ -8,7 +8,7 @@ export const InputArea=styled.TouchableHighlight`
   width:${vw(60)}px;
   borderRadius:10px;
   border: 1px #ebb89b;
-  padding: 10px;
+  padding: 6px;
 `
 
 export const NewText=styled.Text`
