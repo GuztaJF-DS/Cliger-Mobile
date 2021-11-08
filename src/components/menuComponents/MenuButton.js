@@ -15,13 +15,11 @@ const MenuText=styled.Text`
 `
 
 
-export default ({Name,IconSvg,Type,OnPress})=>{
-    let Size=(Type=="Large")?90:40;
-    let IconWidth=(Type=="Large")?35:20;
+export default ({Name,IconSvg,OnPress})=>{
 
     const MenuInputArea=styled.View`
         marginTop:${vh(3)}px;
-        width:${vw(Size)}px; 
+        width:${vw(90)}px; 
         justify-content:center;
         align-items:center;
         border-width: 2.5px;
@@ -35,7 +33,7 @@ export default ({Name,IconSvg,Type,OnPress})=>{
             <MenuInput
                 onPress={OnPress}
             >
-                <IconSvg width={vw(IconWidth)} height={vh(15)}/>
+                <IconSvg width={vw(35)} height={vh(15)}/>
                 <MenuText>{Name}</MenuText>
             </MenuInput>
         </MenuInputArea>

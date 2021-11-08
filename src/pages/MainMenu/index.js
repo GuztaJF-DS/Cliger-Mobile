@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { styles } from '../Style'
 import MenuButton from '../../components/menuComponents/MenuButton';
 import MenuHeader from '../../components/menuComponents/MenuHeader';
-import MenuAddButton from '../../components/menuComponents/MenuAddButton';
 
 /*My Components*/
 import Add from '../../assets/Icons/Add.svg';
@@ -30,8 +29,8 @@ export default function Main({navigation,route}){
             <MenuHeader userId={Id}/>
             <View style={styles.Center}>
                 <MenuButton Type={"Large"} IconSvg={Finances} OnPress={()=>setRoad("Finances")} Name={"Dados Financeiros"}/>
-                <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Products")} Name={"Ver Produtos/Serviços"}/>
-                <MenuButton Type={"Large"} IconSvg={See} Name={"Adicionar Venda"}/>
+                <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Products")} Name={"Adicionar Vendas"}/>
+                <MenuButton Type={"Large"} IconSvg={See}  OnPress={()=>setRoad("Products")} Name={"Ver Produtos/Serviços"}/>    
             </View>
         </View>
     )

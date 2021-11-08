@@ -1,20 +1,20 @@
 export default function IndividualProfit(
-  ProfitUnitCosts,//Custo por Unidade do produto
-  FixedCosts,//Custos Fixos
-  ProductPrice,//Preço do produto
-  Stock//Estoque disponivel do produto do Produto
+  ProfitUnitCosts,
+  FixedCosts,
+  ProductPrice,
+  Stock
 ){
     let profitInfo="";
-    let TotalRevenue=[];//Receita Total
-    let TotalProfit=[];//Lucro total
-    let TotalCosts=[];//Custo Total
-    let LowerValue=Stock+1;//teto usado para descobrir o menor valor
+    let TotalRevenue=[];
+    let TotalProfit=[];
+    let TotalCosts=[];
+    let LowerValue=Stock+1;
 
     var x=0
     while(x<=Stock){
-      TotalRevenue[x]=ProductPrice*x;//Função para pegar a receita, Neste caso o x Representa o preço do produto
-      TotalCosts[x]=parseInt(FixedCosts)+(parseInt(ProfitUnitCosts)*parseInt(x))//função para pegar os custos, quando for fazer pro geral não inclua o x
-      TotalProfit[x]=TotalRevenue[x]-TotalCosts[x];//função para calcular os lucros
+      TotalRevenue[x]=ProductPrice*x;
+      TotalCosts[x]=parseInt(FixedCosts)+(parseInt(ProfitUnitCosts)*parseInt(x))
+      TotalProfit[x]=TotalRevenue[x]-TotalCosts[x];
       if(TotalRevenue[x]>=TotalCosts[x]){
         if(LowerValue>x){
           LowerValue=x;

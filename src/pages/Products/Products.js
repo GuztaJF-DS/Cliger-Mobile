@@ -114,7 +114,6 @@ export default function Products({route,navigation}){
             <View style={MiniStyle.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
             <ProductsOrder Order={orderNum} Op={"2"} Name={"Preço"}/>
-
                 <Modal
                     isVisible={modalVisible}
                 >
@@ -132,7 +131,7 @@ export default function Products({route,navigation}){
                  <ProductDataInput TrueName={"Value"} Name={'Preço'} Data={ProductData.Value} KeyboardType={"numeric"}/>
                  <ProductDataInput TrueName={"Description"} Name={'Descrição'} Data={ProductData.Description} KeyboardType={"default"}/>
                  <ProductDataInput TrueName={"Type"} Name={'Tipo'} Data={ProductData.Type} KeyboardType={"default"}/>
-                 <ProductDataInput TrueName={"TotalAmount"} Name={'Total em Estoque'} Data={ProductData.TotalAmount} KeyboardType={"numeric"}/>
+                 <ProductDataInput TrueName={"UnitCost"} Name={'Custo da Unidade'} Data={ProductData.UnitCost} KeyboardType={"numeric"}/>
 
                     <Button
                         title="Delete Product"

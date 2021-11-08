@@ -17,6 +17,7 @@ export default function ProductDataInput({Data,Name,TrueName,KeyboardType}){
     const {setUpdateData}=useContext(ProductContext);
     const [editing,setEditing]=useState(false);
     const {control, handleSubmit,formState:{errors}}=useForm();
+   
 
     const onSubmit=(data)=>{
         setEditing(!editing);
