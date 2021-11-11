@@ -12,6 +12,7 @@ import ProductsOrder from '../../components/productComponents/ProductsOrder';
 import ProductContext from '../../contexts/ProductContext';
 import CloseButton from '../../components/form/CloseButton';
 import ProductDataInput from '../../components/productComponents/productDataInput';
+import LineGraphic from '../../components/finances/LineGraphic';
 
 export default function Products({route,navigation}){ 
     const {UserId}=route.params;
@@ -22,11 +23,11 @@ export default function Products({route,navigation}){
     const [orderNum,setOrderNum]=useState(1);
     const [order,setOrder]=useState();
     const [modalVisible,setModalVisible]=useState(false);
+    const [graphicModalVisible,setGraphicModalVisible]=useState(false);
     const [ProductData,setProductData]=useState([]);
     const [toDelete,setToDelete]=useState('');
     const [updateData,setUpdateData]=useState({})
     
-
   /*UseEffect: toDelete*/
     useEffect(()=>{
         async function DeleteData(){
@@ -81,6 +82,7 @@ export default function Products({route,navigation}){
         }
     },[updateData])
     
+    
   /*UseEffect: orderNum,products*/
     useEffect(()=>{
         if(Object.values(products).length!=0){
@@ -102,7 +104,6 @@ export default function Products({route,navigation}){
         }
     },[orderNum,products]);
     
-
 
   /*Front Page*/
     return(
@@ -131,15 +132,38 @@ export default function Products({route,navigation}){
                  <ProductDataInput TrueName={"Value"} Name={'Preço'} Data={ProductData.Value} KeyboardType={"numeric"}/>
                  <ProductDataInput TrueName={"Description"} Name={'Descrição'} Data={ProductData.Description} KeyboardType={"default"}/>
                  <ProductDataInput TrueName={"Type"} Name={'Tipo'} Data={ProductData.Type} KeyboardType={"default"}/>
-                 <ProductDataInput TrueName={"UnitCost"} Name={'Custo da Unidade'} Data={ProductData.UnitCost} KeyboardType={"numeric"}/>
-
+                 <ProductDataInput TrueName={"TotalAmount"} Name={'Total no Estoque'} Data={ProductData.TotalAmount} KeyboardType={"numeric"}/>
                     <Button
                         title="Delete Product"
                         color="#960306"
                         onPress={()=>setToDelete(ProductData.id)}
                     />
+                    <Button
+                        title="Ver Vendas do produto"
+                        color="#22c973"
+                        onPress={()=>setGraphicModalVisible(true)}
+                    />
                 </View>
                 </Modal>
+
+                <Modal
+                    isVisible={graphicModalVisible}
+                >
+                <View
+                    style={{
+                        backgroundColor:"#471023",
+                        padding:10,
+                        borderRadius:5,
+                    }}
+                >
+                 <CloseButton OnPressfunction={() => setGraphicModalVisible(false)}/>
+
+                    <View style={{alignItems:"center"}}>
+                        <LineGraphic data={{"RawData":{"userId":UserId,"ProductPrice":ProductData.Value,"ProductId":ProductData.id},"Type":"Product"}}/>
+                    </View>
+                </View>
+                </Modal>
+
             </View>
             <FlatList
                 data={order}

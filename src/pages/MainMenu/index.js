@@ -8,6 +8,7 @@ import MenuHeader from '../../components/menuComponents/MenuHeader';
 import Add from '../../assets/Icons/Add.svg';
 import Finances from '../../assets/Icons/Finances.svg';
 import See from '../../assets/Icons/See.svg';
+import AddProduct from '../../assets/Icons/AddProduct.svg';
 
 export default function Main({navigation,route}){
     const[road,setRoad]=useState('');
@@ -29,8 +30,11 @@ export default function Main({navigation,route}){
             <MenuHeader userId={Id}/>
             <View style={styles.Center}>
                 <MenuButton Type={"Large"} IconSvg={Finances} OnPress={()=>setRoad("Finances")} Name={"Dados Financeiros"}/>
-                <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Products")} Name={"Adicionar Vendas"}/>
-                <MenuButton Type={"Large"} IconSvg={See}  OnPress={()=>setRoad("Products")} Name={"Ver Produtos/Serviços"}/>    
+                <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Products")} Name={"Adicionar Vendas"}/>  
+            </View>
+            <View style={{alignItems: 'center',flexDirection:'row',justifyContent:'space-around'}}>
+                <MenuButton Type={"Normal"} IconSvg={AddProduct}  OnPress={()=>setRoad("Products")} Name={"Adcionar Produtos/Serviços"}/>
+                <MenuButton Type={"Normal"} IconSvg={See}  OnPress={()=>setRoad("Products")} Name={"Ver Produtos/Serviços"}/>
             </View>
         </View>
     )
