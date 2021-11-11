@@ -9,7 +9,7 @@ import Modal from 'react-native-modal';
 import Api from '../../../Api';
 import Input from '../../../components/form/Input';
 import DateInput from '../../../components/form/DateInput';
-import DateShow from '../../../components/form/DateShow';
+import InputShow from '../../../components/form/InputShow';
 import {styles,InputArea,NewText} from '../../Style'
 import CloseButton from '../../../components/form/CloseButton';
 
@@ -154,7 +154,7 @@ export default function Main({ navigation }) {
       <Input IconSvg={Phone} Control={control} Name={"PhoneNumber"} Placeholder={"Número de Telefone"} maxLength={11} keyboardType={"phone-pad"}/>
       {errorTreatment("PhoneNumber") && <Text style={styles.TouchableTextStyle}>{errorTreatment("PhoneNumber")}</Text>}
       
-      <DateShow IconSvg={Birth} Name={splitedPreviewDate} Color={PreviewDateColor} Opacity={PreviewDateOpacity} OnPressFunction={() => setModalVisible(true)}/>
+      <InputShow IconSvg={Birth} Name={splitedPreviewDate} Color={PreviewDateColor} Opacity={PreviewDateOpacity} OnPressFunction={() => setModalVisible(true)}/>
       
         <Modal
           isVisible={modalVisible}

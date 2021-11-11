@@ -3,7 +3,7 @@ import { View,FlatList,Text,Button } from 'react-native';
 import Modal from 'react-native-modal';
 
 /*My Components*/
-import { styles } from '../Style';
+import { NewText, styles } from '../Style';
 import Api from '../../Api';
 import { MiniStyle } from './Mini-Style';
 import List from '../../components/productComponents/List'
@@ -157,7 +157,7 @@ export default function Products({route,navigation}){
                     }}
                 >
                  <CloseButton OnPressfunction={() => setGraphicModalVisible(false)}/>
-
+                    <NewText>Vendas{"\n"}{ProductData.Name}</NewText>
                     <View style={{alignItems:"center"}}>
                         <LineGraphic data={{"RawData":{"userId":UserId,"ProductPrice":ProductData.Value,"ProductId":ProductData.id},"Type":"Product"}}/>
                     </View>

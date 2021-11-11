@@ -28,7 +28,7 @@ const CustomShow=styled.Text`
     font-size:17.5px;
 `
 
-export default function DateShow({IconSvg,Color,Opacity,Name,OnPressFunction}){
+export default function InputShow({IconSvg,Color,Opacity,Name,OnPressFunction}){
     return(
     <InputArea>
         <CustomInput onPress={OnPressFunction}>

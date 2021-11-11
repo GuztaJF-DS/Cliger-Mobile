@@ -39,6 +39,7 @@ export default ({Control,Name,Values})=>{
                 onValueChange={onChange}
                 selectedValue={value}
                 style={{color:'white'}}
+                placeholder={"asad"}
               >
                 {Values.map(Item=>(<Picker.Item key={Item.indexOf(Item)} label={Item} value={Item}/>))}
               </Picker>
