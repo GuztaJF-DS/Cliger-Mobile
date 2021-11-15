@@ -4,15 +4,14 @@ import styled from 'styled-components';
 import { vw } from 'react-native-expo-viewport-units';
 
 
-const ProductViewName=styled.View`
-    width:${vw(80)}px;
+export const ProductViewName=styled.View`
     borderLeftColor:#ebb89b;
     borderLeftWidth:2px;
     borderBottomColor:#ebb89b;
     borderBottomWidth:2px;
 `
 
-const ProductViewValue=styled.View`
+export const ProductViewValue=styled.View`
     backgroundColor:#68293f;
     width:${vw(19)}px;
     justifyContent:center;
@@ -24,11 +23,11 @@ const ProductViewValue=styled.View`
     borderBottomWidth:2px;
 `
 
-const ProductPress=styled.TouchableHighlight`
+export const ProductPress=styled.TouchableHighlight`
     flexDirection:row;
 `
 
-const ProductText=styled.Text`
+export const ProductText=styled.Text`
     font-size:${vw(4)}px;
     margin-left:3px;
     color:#ebb89b;
@@ -48,8 +47,8 @@ export default ({all})=>{
             key={all.Id}
             onPress={() => {setModalVisible(true),setProductData(all)}}
             underlayColor="#3d1322">
-            <>
-                <ProductViewName >
+            <>    
+                <ProductViewName style={{width:vw(80)}}>
                         <ProductText style={{fontSize:22}}>{all.Name}</ProductText>
                 </ProductViewName>
                 <ProductViewValue>

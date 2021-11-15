@@ -5,7 +5,6 @@ import Modal from 'react-native-modal';
 /*My Components*/
 import { NewText, styles } from '../Style';
 import Api from '../../Api';
-import { MiniStyle } from './Mini-Style';
 import List from '../../components/productComponents/List'
 import MenuHeader from '../../components/menuComponents/MenuHeader';
 import ProductsOrder from '../../components/productComponents/ProductsOrder';
@@ -112,7 +111,7 @@ export default function Products({route,navigation}){
             {error.register && <Text style={{color:"#ebb89b"}} >{error.register}</Text>}
 
             <ProductContext.Provider value={{setModalVisible,ProductData,setProductData,setUpdateData,setOrder,setOrderNum,orderNum,products}}>
-            <View style={MiniStyle.ListHeaderStyle}>
+            <View style={styles.ListHeaderStyle}>
             <ProductsOrder Order={orderNum} Op={"1"} Name={"Nome"}/>
             <ProductsOrder Order={orderNum} Op={"2"} Name={"Preço"}/>
                 <Modal

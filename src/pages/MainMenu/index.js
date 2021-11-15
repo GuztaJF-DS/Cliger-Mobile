@@ -63,7 +63,7 @@ export default function Main({navigation,route}){
             <MenuHeader userId={Id}/>
             <View style={styles.Center}>
                 <MenuButton Type={"Large"} IconSvg={Finances} OnPress={()=>setRoad("Finances")} Name={"Dados Financeiros"}/>
-                <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Products")} Name={"Adicionar Vendas"}/>  
+                <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Sales")} Name={"Adicionar Vendas"}/>  
             </View>
             <View style={{alignItems: 'center',flexDirection:'row',justifyContent:'space-around'}}>
                 <MenuButton Type={"Normal"} IconSvg={AddProduct}  OnPress={()=>setModalVisible(true)} Name={"Adcionar Produtos/Serviços"}/>

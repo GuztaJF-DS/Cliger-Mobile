@@ -16,7 +16,6 @@ export const NewText=styled.Text`
   textAlign:center;
   color:#ebb89b;
 `
-
 export const styles=StyleSheet.create({
     container:{
         flex:1,
@@ -38,5 +37,10 @@ export const styles=StyleSheet.create({
     },
     Center:{
         alignItems: 'center'
+    },
+    ListHeaderStyle:{
+        borderBottomColor:"#ebb89b",
+        borderBottomWidth:2,
+        flexDirection:"row",
     }
 })
