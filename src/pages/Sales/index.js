@@ -28,13 +28,7 @@ export default function Sales({navigation,route}){
     const {control,handleSubmit}=useForm();
 
     const backAction = () => {
-        Alert.alert("Hold on!", "Are you sure you want to go back?", [
-          {
-            text: "Cancel",
-            onPress: () => null,
-            style: "cancel"
-          },
-          { text: "YES", onPress: () => navigation.reset({
+        navigation.reset({
             index: 0,
             routes: [{ 
                 name: 'Main',
@@ -42,8 +36,7 @@ export default function Sales({navigation,route}){
                     Id:UserId,
                 }
               }],
-          }) }
-        ]);
+          }) 
         return true;
       };
     
@@ -158,14 +151,14 @@ export default function Sales({navigation,route}){
                 {errors}
             </Text>}
             <View style={styles.ListHeaderStyle}>
-            <Text style={{width:vw(64.4),color:"#ebb89b"}}>
+            <Text style={{width:vw(65.4),color:"#ebb89b"}}>
                 Nome
+            </Text>
+            <Text style={{width:vw(16),color:"#ebb89b"}}>
+                Peso
             </Text>
             <Text style={{width:vw(22),color:"#ebb89b"}}>
                 Quantidade
-            </Text>
-            <Text style={{width:vw(22),color:"#ebb89b"}}>
-                Peso
             </Text>
             </View>
             {products&&

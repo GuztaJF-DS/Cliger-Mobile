@@ -20,6 +20,16 @@ export default ({all})=>{
     const [amount,setAmount]=useState('1');
     const [weight,setWeight]=useState('1000');
     const [inputIsEditable,setInputIsEditable]=useState(true);
+    const [isAService,setIsAService]=useState(false);
+    
+
+    useEffect(()=>{ 
+        if(all.Type=="Serviço"){
+            setIsAService(true)
+            console.log('ass')
+        }
+
+    },[isAService])
 
     function splitAndOrganizeArray(Name){
         let Var=String(selectedData[Name])
@@ -39,6 +49,7 @@ export default ({all})=>{
 
     useEffect(()=>{
         if(all.id==data.id){
+
             var i=0 
             var AlreadySelected=false
             if(weight===""){
@@ -110,37 +121,16 @@ export default ({all})=>{
                     </ProductViewName>
                 </>
             </ProductPress>
+            {(isAService===false)?
             <NumbersCounterView style={{
-                backgroundColor:viewColor
-            }}>
-                <TextInput style={{
-                        height:40,
-                        fontSize:vw(4.2),
-                        color:'#ebb89b',
-                        width:vw(16.4)  
-                    }} 
-                    editable={inputIsEditable}
-                    onChangeText={(amount)=>{
-                        if(amount<0||amount=='0')
-                            {setAmount("1")}
-                        else
-                            {setAmount( amount )}
-                        }}
-                    value={amount}
-                />
-            </NumbersCounterView>
-            <NumbersCounterView style={{
-                borderRightWidth:2,
-                borderRightColor:'#ebb89b',
                 backgroundColor:viewColor,
-                width:vw(17.3),
                 flexDirection:'row'
             }}>
                 <TextInput style={{
                         height:40,
                         fontSize:vw(4.2),
                         color:'#ebb89b',
-                        width:vw(11.6),
+                        width:vw(12.6), 
                     }}
                     editable={inputIsEditable}
                     keyboardType = 'numeric'
@@ -152,9 +142,47 @@ export default ({all})=>{
                     }}
                     value={weight}
                 />
-                <Text style={{
-                    width:vw(2),
+                <Text style={{marginRight:vw(1),
                     color:'#ebb89b'}}>G</Text>
+            </NumbersCounterView>
+            :
+            <NumbersCounterView style={{
+                backgroundColor:"#330f1c",
+                flexDirection:'row'
+            }}>
+                <TextInput style={{
+                        height:40,
+                        fontSize:vw(4.2),
+                        color:'#ebb89b',
+                        width:vw(15.8), 
+                    }}
+                    editable={false}
+                    value={''}
+                />
+            </NumbersCounterView>
+            }
+
+            <NumbersCounterView style={{
+                borderRightWidth:2,
+                borderRightColor:'#ebb89b',
+                backgroundColor:viewColor,
+                width:vw(17.7),
+            }}>
+                <TextInput style={{
+                        height:40,
+                        fontSize:vw(4.2),
+                        color:'#ebb89b',
+                        width:vw(15.6)  
+                    }} 
+                    editable={inputIsEditable}
+                    onChangeText={(amount)=>{
+                        if(amount<0||amount=='0')
+                            {setAmount("1")}
+                        else
+                            {setAmount( amount )}
+                        }}
+                    value={amount}
+                />
             </NumbersCounterView>
         </View>
     )
