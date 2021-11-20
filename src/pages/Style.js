@@ -42,5 +42,6 @@ export const styles=StyleSheet.create({
         borderBottomColor:"#ebb89b",
         borderBottomWidth:2,
         flexDirection:"row",
+        marginTop:vh(2)
     }
 })

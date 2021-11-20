@@ -60,15 +60,20 @@ export default function LineGraphic({data}){
           break;
 
         case "Product":
-            let total2=1;
-            console.log(productSales)
+            let total2=0;
 
             for(var i in productSales){
+              if(productSales.length==1){
+                  total2=total2+parseInt(productSales[i].Amount)
+              }
+              if(i==productSales.length-2){
+                  total2=total2+parseInt(productSales[parseInt(i)+1].Amount)
+              }
                 if(i<productSales.length-1 && productSales[i].createdAt==productSales[parseInt(i)+1].createdAt){
-                  total2++
+                  total2=total2+parseInt(productSales[i].Amount)
                 }else{
                   obj.push({"date":productSales[i].createdAt,"x":new Date(productSales[i].createdAt),"y":total2})
-                  total2=1
+                  total2=0
                 }
               }
             
@@ -81,7 +86,7 @@ export default function LineGraphic({data}){
               :
               <VictoryChart
               height={285}
-                theme={VictoryTheme.material}
+              
                 containerComponent={
                   <VictoryVoronoiContainer
                     voronoiDimension="x"

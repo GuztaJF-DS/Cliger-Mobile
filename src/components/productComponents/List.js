@@ -5,6 +5,7 @@ import { vw } from 'react-native-expo-viewport-units';
 
 
 export const ProductViewName=styled.View`
+    justifyContent:center
     borderLeftColor:#ebb89b;
     borderLeftWidth:2px;
     borderBottomColor:#ebb89b;

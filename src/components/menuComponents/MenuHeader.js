@@ -35,7 +35,13 @@ export default function MenuHeader(userId){
     const [cash,setCash]=useState(0);
     const [data,setData]=useState('');
 
+    if(userId.refresh==true){
+        FetchCash();
+    }
+
     useEffect(()=>{
+        FetchCash();
+    },[data])
         async function FetchCash(){
             try{
                 const response= await Api.post('/finance/getAll',{"userId":userId.userId});
@@ -48,8 +54,6 @@ export default function MenuHeader(userId){
                 console.log(err)
             }
         }
-        FetchCash();
-    },[data])
 
     return(
         <>

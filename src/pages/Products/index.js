@@ -26,6 +26,7 @@ export default function Products({route,navigation}){
     const [ProductData,setProductData]=useState([]);
     const [toDelete,setToDelete]=useState('');
     const [updateData,setUpdateData]=useState({})
+    const [refresh,setRefresh]=useState(false);
     
   /*UseEffect: toDelete*/
     useEffect(()=>{
@@ -107,7 +108,7 @@ export default function Products({route,navigation}){
   /*Front Page*/
     return(
         <View style={styles.container}>
-        <MenuHeader userId={UserId}/>
+        <MenuHeader refresh={refresh} userId={UserId}/>
             {error.register && <Text style={{color:"#ebb89b"}} >{error.register}</Text>}
 
             <ProductContext.Provider value={{setModalVisible,ProductData,setProductData,setUpdateData,setOrder,setOrderNum,orderNum,products}}>

@@ -21,6 +21,7 @@ export default function Finance({route}){
     const [modalVisible,setModalVisible]=useState(false);
     const [profitData,setProfitData]=useState('');
     const [toWriteWeekend,setToWriteWeekend]=useState('');
+    const [refresh,setRefresh]=useState(false);
 
   /*UseEffect: dataType*/
     useEffect(()=>{
@@ -33,10 +34,7 @@ export default function Finance({route}){
                 }
                 else if(dataType==='Vendas'){
                     const response=await Api.post('/SalesRecord/getAll',{"userId":UserId});
-
                     const RawData=response.data; 
-                   
-                    console.log(RawData[RawData.length-1][16]); 
                     setFinanceData({"Type":"Sales",RawData});
                 }
             }catch(err){
@@ -59,7 +57,7 @@ export default function Finance({route}){
     /*Front Page*/
     return(
         <View style={styles.container}>
-            <MenuHeader userId={UserId}/>
+            <MenuHeader refresh={refresh} userId={UserId}/>
             <NewText>{dataType}</NewText>
             <LineGraphic data={financeData}/>
             <Modal
