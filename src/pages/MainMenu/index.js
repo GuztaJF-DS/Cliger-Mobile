@@ -26,14 +26,16 @@ export default function Main({navigation,route}){
     const [modalVisible,setModalVisible]=useState(false);
     const [minusModal,setMinusModal]=useState(false);
     const [refresh,setRefresh]=useState(false);
-    const { Id }=route.params;      
-  
+    
+    const { Id }=route.params;
+
 
       /*UseEffect: Dados*/
     useEffect(()=>{
         async function fetchData() {
             try{
                 let Json={...dados,"userId":Id}
+                console.log(Json);
                 const response=await Api.post('/products/New',Json);
                 setResponseModal(true)
             }catch(err){
@@ -46,10 +48,13 @@ export default function Main({navigation,route}){
     },[dados]);
 
     useEffect(()=>{
-        async function fetchData() {
+        async function fetchFinanceData() {
             try{    
                 const resp=await Api.post('/finance/getAll',{"userId":Id});
-                let currentBalance=(resp.data[parseInt(resp.data.length)-1].CurrentBalance);
+                let currentBalance=0;
+                if(resp.data.length!=0){
+                    currentBalance=(resp.data[parseInt(resp.data.length)-1].CurrentBalance);
+                }
                 let NewBalance=parseFloat(currentBalance)-parseFloat(balanceData.Expense)
                 const finalResp=await Api.post('/finance/register',{"userId":Id,"CurrentBalance":NewBalance});
                 setRefresh(true)
@@ -62,14 +67,15 @@ export default function Main({navigation,route}){
             }
         }
         if(minusModal==true && Object.values(balanceData).length!=0){
-            fetchData();
+            fetchFinanceData();
         }
     },[balanceData]);
 
     const {control,handleSubmit}=useForm();
 
-    const onSubmit=(data,isAddingAnProduct)=>{
-        if(isAddingAnProduct==true){
+    const onSubmit=(data)=>{
+        console.log(data.Expense===undefined)
+        if(data.Expense===undefined){
             setDados(data);
         }
         else{
@@ -124,7 +130,7 @@ export default function Main({navigation,route}){
                  <LightInput Control={control} Name={'TotalAmount'} Placeholder={'Total no Estoque'} keyboardType={"numeric"}/>
                  
 
-                 <TouchableHighlight onPress={handleSubmit(onSubmit,true)}>
+                 <TouchableHighlight onPress={handleSubmit(onSubmit)}>
                     <View style={{
                         marginTop:10,
                         borderRadius:10,
@@ -153,6 +159,7 @@ export default function Main({navigation,route}){
                     }}
                 >
                  <CloseButton OnPressfunction={() => setMinusModal(false)}/>
+                    <NewText>Adicionar uma Despesa</NewText>
                  <LightInput Control={control} Name={'Expense'} Placeholder={'Adicionar Despesa'} keyboardType={"numeric"}/>
                  <TouchableHighlight 
                  style={{
@@ -163,7 +170,7 @@ export default function Main({navigation,route}){
                         padding: 5,
                         alignItems:'center'
                     }}
-                     onPress={handleSubmit(onSubmit,false)}>
+                     onPress={handleSubmit(onSubmit)}>
                     <NewText>Adicionar</NewText>
                 </TouchableHighlight>
                 </View>

@@ -13,17 +13,20 @@ export default function LineGraphic({data}){
 
     useEffect(()=>{
       async function FetchData(){
-      try{
-        const Json={"userId":FormatedData.userId,"ProductId":FormatedData.ProductId}
-        const resp=await Api.post("/SalesRecord/GetOneProduct",Json);
-        setProductSales(resp.data);
-        setProData("")
-      }
-        catch(err){
-          console.log(err);
-      }
-    }
-    FetchData();
+        
+          try{
+            const Json={"userId":FormatedData.userId,"ProductId":FormatedData.ProductId}
+            const resp=await Api.post("/SalesRecord/GetOneProduct",Json);
+            setProductSales(resp.data);
+            setProData("")
+          }
+            catch(err){
+              console.log(err);
+          }
+        }
+        if(FormatedData.length!=0){
+          FetchData();
+        }
     },[proData])
 
     if(Object.values(FormatedData).length==0){

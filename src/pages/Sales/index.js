@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,FlatList, TouchableHighlight} from 'react-native';
+import {View,Text,FlatList, TouchableHighlight,BackHandler,Alert} from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import Modal from 'react-native-modal';
 import {useForm} from 'react-hook-form'
@@ -13,7 +13,7 @@ import CloseButton from '../../components/form/CloseButton';
 import LightInput from '../../components/form/LightInput';
 import BuyList from '../../components/SalesComponets/BuyList';
 
-export default function Sales({route}){
+export default function Sales({navigation,route}){
     const {UserId}=route.params;
     const [products,setProducts]=useState();
     const [data,setData]=useState("");
@@ -26,6 +26,33 @@ export default function Sales({route}){
     const [refresh,setRefresh]=useState(false);
 
     const {control,handleSubmit}=useForm();
+
+    const backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+          {
+            text: "Cancel",
+            onPress: () => null,
+            style: "cancel"
+          },
+          { text: "YES", onPress: () => navigation.reset({
+            index: 0,
+            routes: [{ 
+                name: 'Main',
+                params: { 
+                    Id:UserId,
+                }
+              }],
+          }) }
+        ]);
+        return true;
+      };
+    
+      useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", backAction);
+    
+        return () =>
+          BackHandler.removeEventListener("hardwareBackPress", backAction);
+      }, []);
 
     function ViewPrice(){
         if(selectedData!==undefined){
@@ -83,7 +110,10 @@ export default function Sales({route}){
                     }
                     const response=await Api.post('/SalesRecord/newRecord',Json);
                     const resp=await Api.post('/finance/getAll',{"userId":UserId});
-                    let currentBalance=(resp.data[parseInt(resp.data.length)-1].CurrentBalance);
+                    let currentBalance=0;
+                    if(resp.data.length!=0){
+                        currentBalance=(resp.data[parseInt(resp.data.length)-1].CurrentBalance);
+                    }
                     let NewBalance=parseFloat(currentBalance)+parseFloat(Json.TotalCost)
                     const finalResp=await Api.post('/finance/register',{"userId":UserId,"CurrentBalance":NewBalance});
                     setRefresh(true)
@@ -119,7 +149,7 @@ export default function Sales({route}){
         }
             FetchData();
     },[data]);
-
+    
     return(
         <View style={styles.container}>
             <MenuHeader refresh={refresh} userId={UserId}/>

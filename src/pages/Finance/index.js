@@ -27,6 +27,7 @@ export default function Finance({route}){
     useEffect(()=>{
         async function fetchData(){
             try{
+                console.log(UserId)
                 if(dataType==='Saldo Total'){
                     const response=await Api.post('/finance/getAll',{"userId":UserId});
                     const RawData=response.data;
@@ -45,7 +46,7 @@ export default function Finance({route}){
     },[dataType]);
 
     /*React-Hooks-Form constants*/
-    const {control, handleSubmit,formState:{errors}}=useForm();
+    const {control, handleSubmit}=useForm();
 
     /*Submit Form's Function*/
     const onSubmit=(data)=>{
