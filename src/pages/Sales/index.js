@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,FlatList, TouchableHighlight,BackHandler,Alert} from 'react-native';
+import {View,Text,FlatList, TouchableHighlight,BackHandler} from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import Modal from 'react-native-modal';
 import {useForm} from 'react-hook-form'
@@ -145,7 +145,7 @@ export default function Sales({navigation,route}){
     
     return(
         <View style={styles.container}>
-            <MenuHeader refresh={refresh} userId={UserId}/>
+            <MenuHeader refresh={refresh} userId={UserId} navigation={navigation} route={route}/>
             <SalesContext.Provider value={{data,setData,selectedData,setSelectedData}}>
             {(errors!==null)&&<Text style={{color:"#ebb89b"}}>
                 {errors}

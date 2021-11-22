@@ -14,7 +14,7 @@ import LightInput from "../../components/form/LightInput";
 import InputPicker from "../../components/form/InputPicker";
 
 
-export default function Finance({route}){
+export default function Finance({navigation,route}){
     const {UserId}=route.params;
     const [financeData,setFinanceData]=useState('');
     const [dataType,setDataType]=useState('Saldo Total');
@@ -58,7 +58,7 @@ export default function Finance({route}){
     /*Front Page*/
     return(
         <View style={styles.container}>
-            <MenuHeader refresh={refresh} userId={UserId}/>
+            <MenuHeader refresh={refresh} userId={UserId} navigation={navigation} route={route}/>
             <NewText>{dataType}</NewText>
             <LineGraphic data={financeData}/>
             <Modal

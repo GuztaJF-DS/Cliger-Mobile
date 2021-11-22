@@ -1,14 +1,24 @@
 import React,{useState,useEffect} from 'react';
+import { View,Text, TouchableHighlight} from 'react-native'
 import styled from 'styled-components/native';
-import { vh } from 'react-native-expo-viewport-units';
+import { vh,vw } from 'react-native-expo-viewport-units';
 import ResponsiveImage from "react-native-responsive-image";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../../Api'
 
 const Header=styled.View`
-    width:100%;
+    width:80%;
+    height:${vh(8.5)}px;
+    flexDirection:column;
+    justify-content:center;
+    backgroundColor:#582536;
+`
+
+const LogOutView=styled.View`
+    width:20%;
     height:${vh(8.5)}px;
     alignItems:center;
-    flexDirection:column;
+    flexDirection:row;
     justify-content:center;
     backgroundColor:#582536;
 `
@@ -30,12 +40,25 @@ const CashHeader=styled.View`
     justify-content:center;
 `
 
-
-export default function MenuHeader(userId){
+export default function MenuHeader({userId,refresh,navigation,route}){
     const [cash,setCash]=useState(0);
     const [data,setData]=useState('');
 
-    if(userId.refresh==true){
+    async function LogOut(){
+        try{
+            await AsyncStorage.removeItem("@MasterToken");
+            navigation.reset({
+                index: 0,
+                routes: [{ 
+                    name: 'PreLoad'
+                  }],
+              });
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    if(refresh==true){
         FetchCash();
     }
 
@@ -44,7 +67,7 @@ export default function MenuHeader(userId){
     },[data])
         async function FetchCash(){
             try{
-                const response= await Api.post('/finance/getAll',{"userId":userId.userId});
+                const response= await Api.post('/finance/getAll',{"userId":userId});
                 if(Object.values(response.data).length!=0){
                     let x=response.data.length;
                     setCash(response.data[x-1].CurrentBalance);
@@ -57,13 +80,25 @@ export default function MenuHeader(userId){
 
     return(
         <>
-        <Header>
-            <ResponsiveImage 
-                source={require('../../assets/Images/Cliger_Logo_TextOnly.png')}
-                initWidth={127.9}
-                initHeight={49.4}
-            />
-        </Header>
+        <View
+         style={{flexDirection:'row'}}
+        >
+            <Header>
+                <ResponsiveImage 
+                    source={require('../../assets/Images/Cliger_Logo_TextOnly.png')}
+                    initWidth={129}
+                    initHeight={49.4}
+                    style={{marginLeft:vw(34.3)}}
+                />
+            </Header>
+            <LogOutView>
+            <TouchableHighlight
+                onPress={()=>{LogOut()}}
+            >
+                <Text style={{color:'#ebb89b'}}>Sair</Text>
+            </TouchableHighlight>
+            </LogOutView>
+        </View>
         <CashHeader>
             <CashInfo>Saldo: R$ {cash}</CashInfo> 
         </CashHeader>

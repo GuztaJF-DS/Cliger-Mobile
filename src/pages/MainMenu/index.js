@@ -96,7 +96,7 @@ export default function Main({navigation,route}){
   /*Front Page*/
     return(
         <View style={{flex:1,backgroundColor:'#68293f',}}>
-            <MenuHeader refresh={refresh} userId={Id}/>
+            <MenuHeader userId={Id} refresh={refresh} navigation={navigation} route={route}/>
             <View style={styles.Center}>
                 <MenuButton Type={"Large"} IconSvg={Finances} OnPress={()=>setRoad("Finances")} Name={"Dados Financeiros"}/>
                 <MenuButton Type={"Large"} IconSvg={Add}  OnPress={()=>setRoad("Sales")} Name={"Adicionar Vendas"}/>  
@@ -159,8 +159,8 @@ export default function Main({navigation,route}){
                     }}
                 >
                  <CloseButton OnPressfunction={() => setMinusModal(false)}/>
-                    <NewText>Adicionar uma Despesa</NewText>
-                 <LightInput Control={control} Name={'Expense'} Placeholder={'Adicionar Despesa'} keyboardType={"numeric"}/>
+                    <NewText>Adicionar um Gasto</NewText>
+                 <LightInput Control={control} Name={'Expense'} Placeholder={'Adicionar Gasto'} keyboardType={"numeric"}/>
                  <TouchableHighlight 
                  style={{
                         marginTop:10,
