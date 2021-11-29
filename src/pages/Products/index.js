@@ -1,5 +1,5 @@
 import React,{useState,useEffect}  from 'react';
-import { View,FlatList,Text,Button } from 'react-native';
+import { View,FlatList,Text,Button, Alert } from 'react-native';
 import Modal from 'react-native-modal';
 
 /*My Components*/
@@ -28,11 +28,24 @@ export default function Products({route,navigation}){
     const [updateData,setUpdateData]=useState({})
     const [refresh,setRefresh]=useState(false);
     
+        const OnDeleteAlert = () => {
+            Alert.alert("Espera ai", `Você Realmente quer DELETAR o(a) ${ProductData.Name}?`, [
+              {
+                text: "não",
+                onPress: () => null,
+                style: "cancel"
+              },
+              { text: "sim", onPress: () => setToDelete(ProductData.id) }
+            ]);
+            return true;
+          };
+    
   /*UseEffect: toDelete*/
     useEffect(()=>{
         async function DeleteData(){
             try{
                 var DeleteInfo={"userId":UserId,"DeleteId":toDelete}
+                console.log(DeleteInfo)
                 const response=await Api.post('/products/deleteOne',DeleteInfo);
                 setData(response.data.message);
                 setModalVisible(false);
@@ -134,12 +147,12 @@ export default function Products({route,navigation}){
                  <ProductDataInput TrueName={"Type"} Name={'Tipo'} Data={ProductData.Type} KeyboardType={"default"}/>
                  <ProductDataInput TrueName={"TotalAmount"} Name={'Total no Estoque'} Data={ProductData.TotalAmount} KeyboardType={"numeric"}/>
                     <Button
-                        title="Delete Product"
+                        title={`Deletar ${ProductData.Type}`}
                         color="#960306"
-                        onPress={()=>setToDelete(ProductData.id)}
+                        onPress={()=>OnDeleteAlert()}
                     />
                     <Button
-                        title="Ver Vendas do produto"
+                        title={`Ver Vendas do ${ProductData.Type}`}
                         color="#22c973"
                         onPress={()=>setGraphicModalVisible(true)}
                     />

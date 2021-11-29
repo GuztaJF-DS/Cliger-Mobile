@@ -147,7 +147,7 @@ export default ({all})=>{
             </NumbersCounterView>
             :
             <NumbersCounterView style={{
-                backgroundColor:"#330f1c",
+                backgroundColor:"#522234",
                 flexDirection:'row'
             }}>
                 <TextInput style={{
