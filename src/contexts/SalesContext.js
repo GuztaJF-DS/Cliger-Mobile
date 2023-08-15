@@ -1,4 +1,4 @@
 import React from 'react';
-const SalesContext=React.createContext();
+const SalesContext = React.createContext();
 
-export default SalesContext; 
+export default SalesContext;
