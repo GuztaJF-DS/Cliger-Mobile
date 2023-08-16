@@ -4,30 +4,30 @@ import DatePicker from 'react-native-date-picker';
 import styled from 'styled-components/native';
 
 const InputArea = styled.View`
-  backgroundColor: #fee2cf;
+	backgroundcolor: #fee2cf;
 `;
 
 export default function DateInput({Control}) {
-  const [date, setDate] = useState(new Date());
+	const [date, setDate] = useState(new Date());
 
-  return (
-    <InputArea>
-      <Controller
-        control={Control}
-        rules={{
-          required: true,
-        }}
-        render={({field: {onChange, value}}) => (
-          <DatePicker
-            onDateChange={onChange}
-            date={value}
-            mode="date"
-            androidVariant="nativeAndroid"
-          />
-        )}
-        name={'BirthDate'}
-        defaultValue={date}
-      />
-    </InputArea>
-  );
+	return (
+		<InputArea>
+			<Controller
+				control={Control}
+				rules={{
+					required: true,
+				}}
+				render={({field: {onChange, value}}) => (
+					<DatePicker
+						onDateChange={onChange}
+						date={value}
+						mode="date"
+						androidVariant="nativeAndroid"
+					/>
+				)}
+				name={'BirthDate'}
+				defaultValue={date}
+			/>
+		</InputArea>
+	);
 }

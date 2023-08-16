@@ -13,27 +13,27 @@ import Finances from '../pages/Finance/index';
 import Sales from '../pages/Sales/index';
 
 export default function MainStack() {
-  const Stack = createStackNavigator();
+	const Stack = createStackNavigator();
 
-  return (
-    <Stack.Navigator
-      initialRouteName="PreLoad"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="PreLoad" component={PreLoad} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="SignIn" component={SignIn} />
-      <Stack.Screen
-        name="EmailSelectChangePassword"
-        component={EmailSelectChangePassword}
-      />
-      <Stack.Screen name="EmailCheckToken" component={EmailCheckToken} />
-      <Stack.Screen name="PasswordChange" component={PasswordChange} />
-      <Stack.Screen name="Main" component={Main} />
-      <Stack.Screen name="Products" component={Products} />
-      <Stack.Screen name="Finances" component={Finances} />
-      <Stack.Screen name="Sales" component={Sales} />
-    </Stack.Navigator>
-  );
+	return (
+		<Stack.Navigator
+			initialRouteName="PreLoad"
+			screenOptions={{
+				headerShown: false,
+			}}>
+			<Stack.Screen name="PreLoad" component={PreLoad} />
+			<Stack.Screen name="SignUp" component={SignUp} />
+			<Stack.Screen name="SignIn" component={SignIn} />
+			<Stack.Screen
+				name="EmailSelectChangePassword"
+				component={EmailSelectChangePassword}
+			/>
+			<Stack.Screen name="EmailCheckToken" component={EmailCheckToken} />
+			<Stack.Screen name="PasswordChange" component={PasswordChange} />
+			<Stack.Screen name="Main" component={Main} />
+			<Stack.Screen name="Products" component={Products} />
+			<Stack.Screen name="Finances" component={Finances} />
+			<Stack.Screen name="Sales" component={Sales} />
+		</Stack.Navigator>
+	);
 }

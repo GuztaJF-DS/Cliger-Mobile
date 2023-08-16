@@ -4,9 +4,9 @@ import 'react-native-gesture-handler';
 import MainStack from './src/stack/MainStack';
 
 export default () => {
-  return (
-    <NavigationContainer>
-      <MainStack />
-    </NavigationContainer>
-  );
+	return (
+		<NavigationContainer>
+			<MainStack />
+		</NavigationContainer>
+	);
 };
