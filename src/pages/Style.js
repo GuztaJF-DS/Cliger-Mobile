@@ -4,16 +4,16 @@ import {vw, vh} from 'react-native-expo-viewport-units';
 
 export const InputArea = styled.TouchableHighlight`
   margin-top: ${vh(4)}px;
-  alignitems: center;
+  align-items: center;
   width: ${vw(60)}px;
-  borderradius: 10px;
+  border-radius: 10px;
   border: 1px #ebb89b;
   padding: 6px;
 `;
 
 export const NewText = styled.Text`
   font-size: ${vw(7)}px;
-  textAlign: center;
+  text-align: center;
   color: #ebb89b;
 `;
 export const styles = StyleSheet.create({

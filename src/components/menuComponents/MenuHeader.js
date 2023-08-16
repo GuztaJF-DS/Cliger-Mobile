@@ -10,34 +10,34 @@ import Logo from '../../assets/Images/Cliger_Logo_TextOnly.png';
 const Header = styled.View`
   width: 80%;
   height: ${vh(8.5)}px;
-  flexdirection: column;
+  flex-direction: column;
   justify-content: center;
-  backgroundcolor: #582536;
+  background-color: #582536;
 `;
 
 const LogOutView = styled.View`
   width: 20%;
   height: ${vh(8.5)}px;
-  alignitems: center;
-  flexdirection: row;
+  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  backgroundcolor: #582536;
+  background-color: #582536;
 `;
 
 const CashInfo = styled.Text`
   color: #582536;
-  fontsize: ${vh(2.5)}px;
-  fontweight: bold;
+  font-size: ${vh(2.5)}px;
+  font-weight: bold;
 `;
 const CashHeader = styled.View`
-    borderBottomLeftRadius:20px;
-    borderBottomRightRadius:20px;
-    borderTopLeftRadius:1.5px;
-    borderTopRightRadius:1.5px;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+    border-top-left-radius:1.5px;
+    border-top-right-radius:1.5px;
     width:100%;
     height:${vh(3.5)}px
-    backgroundColor:#e9f7d6;
-    alignItems:center;
+    background-color:#e9f7d6;
+    align-items:center;
     justify-content:center;
 `;
 

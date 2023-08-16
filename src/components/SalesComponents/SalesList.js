@@ -11,11 +11,11 @@ import {
 import SalesContext from '../../contexts/SalesContext';
 
 const NumbersCounterView = styled.View`
-  alignitems: center;
-  borderleftcolor: #ebb89b;
-  borderleftwidth: 2px;
-  borderbottomcolor: #ebb89b;
-  borderbottomwidth: 2px;
+  align-items: center;
+  border-left-color: #ebb89b;
+  border-left-width: 2px;
+  border-bottom-color: #ebb89b;
+  border-bottom-width: 2px;
 `;
 
 export default function SalesList({all}) {

@@ -80,14 +80,14 @@ export default function Products({route, navigation}) {
   useEffect(() => {
     async function Update() {
       try {
-        let updateDataLenght = JSON.stringify(updateData).length;
+        let updateDataLength = JSON.stringify(updateData).length;
         let UpdateJSON =
           '{"id":' +
           ProductData.id +
           ',"userId":' +
           UserId +
           ',' +
-          JSON.stringify(updateData).substring(1, updateDataLenght - 1) +
+          JSON.stringify(updateData).substring(1, updateDataLength - 1) +
           '}';
         const response = await Api.post(
           'products/Update',
@@ -109,7 +109,7 @@ export default function Products({route, navigation}) {
     if (Object.values(products).length !== 0) {
       if (products.message == 'Not Found') {
         setError({
-          register: 'Pelo visto você ainda não cadastrou nenhum produto',
+          register: 'Pelo visto você ainda não Cadastrou nenhum produto',
         });
       } else if (orderNum == 1) {
         setOrder(products.sort((a, b) => a.Name.localeCompare(b.Name)));

@@ -94,7 +94,7 @@ export default function Main({navigation, route}) {
       </View>
       <View style={styles.Center}>
         <Text style={{marginTop: '2%', color: '#ebb89b'}}>
-          Digite o Codigo que você recebeu via Email
+          Digite o código que você recebeu via Email
         </Text>
       </View>
 

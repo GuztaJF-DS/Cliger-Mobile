@@ -72,11 +72,11 @@ export default function Main({navigation, route}) {
       console.error(errors[Field]);
       if (errors[Field].type == 'pattern') {
         if (Field == 'Password') {
-          return 'A Senha precisa Conter um Caracter Maiusculo';
+          return 'A Senha precisa conter  um caractere maiúsculo';
         }
       } else if (errors[Field].type == 'minLength') {
         if (Field == 'Password') {
-          return 'A Senha precisa Ter pelo menos 8 Digitos';
+          return 'A Senha precisa conter pelo menos 8 dígitos';
         }
       } else {
         return 'Campo Obrigatório';

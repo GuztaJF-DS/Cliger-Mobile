@@ -85,7 +85,7 @@ export default function Main({navigation}) {
         if (Field == 'Email') {
           return 'O Email está incorreto';
         } else if (Field == 'Password') {
-          return 'A Senha precisa Conter um Caracter Maiusculo';
+          return 'A Senha precisa Conter um Caractere Maiusculo';
         }
       } else if (errors[Field].type == 'minLength') {
         if (Field == 'PhoneNumber') {

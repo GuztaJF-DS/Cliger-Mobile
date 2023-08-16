@@ -50,7 +50,7 @@ export default function Finance({navigation, route}) {
   /*Submit Form's Function*/
   const onSubmit = data => {
     setToWriteWeekend(data.Weekend);
-    let Info = BusinessProfit(data.FixedCosts, data.Avarage, data.Weekend);
+    let Info = BusinessProfit(data.FixedCosts, data.Average, data.Weekend);
     setProfitData(Info);
   };
 
@@ -86,7 +86,7 @@ export default function Finance({navigation, route}) {
           />
           <LightInput
             Control={control}
-            Name={'Avarage'}
+            Name={'Average'}
             Placeholder={'Média da Renda Diária'}
             keyboardType={'numeric'}
             defaultValue={''}
@@ -117,7 +117,7 @@ export default function Finance({navigation, route}) {
             <Text style={{color: 'white', marginTop: 7}}>
               Considerando o estabelecimento {toWriteWeekend} o que dá{' '}
               {profitData.TotalDays} Dias úteis ao Fim do Mês, Se Ganharmos em
-              média {profitData.Avarage} R$ por dia, levaremos{' '}
+              média {profitData.Average} R$ por dia, levaremos{' '}
               {profitData.ToSale} Dias, para recuperar o dinheiro investido,
               segundo essa estimativa, ao Final do mês teremos{' '}
               {profitData.EstimatedProfit} R$ de Lucro
@@ -126,9 +126,9 @@ export default function Finance({navigation, route}) {
             <Text style={{color: 'white', marginTop: 7}}>
               Considerando o estabelecimento {toWriteWeekend} o que dá{' '}
               {profitData.TotalDays} Dias úteis ao Fim do Mês, Se Ganharmos em
-              média {profitData.Avarage} R$, não consiguiremos recuperar o
+              média {profitData.Average} R$, não consiguiremos recuperar o
               dinheiro investido, segundo essa estimativa, ao Final do mês
-              teremos {profitData.EstimatedProfit} R$ de Prejuizo
+              teremos {profitData.EstimatedProfit} R$ de prejuizo
             </Text>
           ) : null}
         </View>

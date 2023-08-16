@@ -37,7 +37,7 @@ export default function InputPicker({Control, Name, Values}) {
               onValueChange={onChange}
               selectedValue={value}
               style={{ color: 'white' }}
-              placeholder={'asad'}
+              placeholder={'Picker'}
             >
               {Values.map((Item) => (
                 <Picker.Item key={Item.indexOf(Item)} label={Item} value={Item} />

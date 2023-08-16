@@ -8,10 +8,10 @@ const MenuInput = styled.TouchableHighlight`
   align-items: center;
   width: ${vw(20)}px;
   height: ${vw(20)}px;
-  borderradius: ${vw(20) / 2}px;
-  bordercolor: #ecb99b;
-  alignitems: center;
-  borderwidth: 2px;
+  border-radius: ${vw(20) / 2}px;
+  border-color: #ecb99b;
+  align-items: center;
+  border-width: 2px;
   position: absolute;
 `;
 

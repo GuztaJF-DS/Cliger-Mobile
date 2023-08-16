@@ -9,7 +9,7 @@ const MenuInput = styled.TouchableOpacity`
   align-items: center;
 `;
 const MenuText = styled.Text`
-  textAlign: center;
+  text-align: center;
   font-size: ${vw(4)}px;
   color: #ecb99b;
 `;
@@ -19,7 +19,7 @@ export default function MenuButton({Name, IconSvg, Type, OnPress}) {
   const IconWidth = Type == 'Large' ? 35 : 20;
 
   const MenuInputArea = styled.View`
-    margintop: ${vh(3)}px;
+    margin-top: ${vh(3)}px;
     width: ${vw(Size)}px;
     justify-content: center;
     align-items: center;

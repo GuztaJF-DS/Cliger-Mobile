@@ -22,7 +22,7 @@ export default function Main({navigation}) {
         const Body = {
           ConfirmToken: `${value}`,
         };
-        let resp = await Api.post('auth/GetUserbyToken', Body);
+        let resp = await Api.post('auth/GetUserByToken', Body);
 
         if (resp) {
           if (resp.data.Error) {

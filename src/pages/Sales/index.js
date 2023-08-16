@@ -12,12 +12,12 @@ import {useForm} from 'react-hook-form';
 
 import {styles, NewText} from '../Style';
 import Api from '../../Api';
-import SalesList from '../../components/SalesComponets/SalesList';
+import SalesList from '../../components/SalesComponents/SalesList';
 import SalesContext from '../../contexts/SalesContext';
 import MenuHeader from '../../components/menuComponents/MenuHeader';
 import CloseButton from '../../components/form/CloseButton';
 import LightInput from '../../components/form/LightInput';
-import BuyList from '../../components/SalesComponets/BuyList';
+import BuyList from '../../components/SalesComponents/BuyList';
 
 export default function Sales({navigation, route}) {
   const {UserId} = route.params;
@@ -26,9 +26,9 @@ export default function Sales({navigation, route}) {
   const [selectedData, setSelectedData] = useState([]);
   const [salesData, setSalesData] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [menssageModalVisible, setMenssageModalVisible] = useState(false);
+  const [messageModalVisible, setMessageModalVisible] = useState(false);
   const [errors, setErrors] = useState(null);
-  const [finishMenssage, setFinishMenssage] = useState(null);
+  const [finishMessage, setFinishMessage] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
   const {control, handleSubmit} = useForm();
@@ -49,10 +49,10 @@ export default function Sales({navigation, route}) {
   };
 
   useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', backAction);
+    BackHandler.addEventListener('BackPress', backAction);
 
     return () =>
-      BackHandler.removeEventListener('hardwareBackPress', backAction);
+      BackHandler.removeEventListener('BackPress', backAction);
   }, []);
 
   function ViewPrice() {
@@ -93,8 +93,8 @@ export default function Sales({navigation, route}) {
     if (selectedData.TotalCost <= data.MoneyPayed) {
       setSalesData(data);
     } else {
-      setFinishMenssage('Sem Crédito Suficiente');
-      setMenssageModalVisible(true);
+      setFinishMessage('Sem Crédito Suficiente');
+      setMessageModalVisible(true);
     }
   };
 
@@ -134,8 +134,8 @@ export default function Sales({navigation, route}) {
             clearInterval(interval);
           }, 1000);
 
-          setFinishMenssage('Venda Realizada\nTroco: ' + PayBack);
-          setMenssageModalVisible(true);
+          setFinishMessage('Venda Realizada\nTroco: ' + PayBack);
+          setMessageModalVisible(true);
           setModalVisible(false);
         }
       } catch (err) {
@@ -240,7 +240,7 @@ export default function Sales({navigation, route}) {
             </TouchableHighlight>
           </View>
         </Modal>
-        <Modal isVisible={menssageModalVisible}>
+        <Modal isVisible={messageModalVisible}>
           <View
             style={{
               backgroundColor: '#471023',
@@ -248,9 +248,9 @@ export default function Sales({navigation, route}) {
               borderRadius: 5,
             }}>
             <CloseButton
-              OnPressFunction={() => setMenssageModalVisible(false)}
+              OnPressFunction={() => setMessageModalVisible(false)}
             />
-            <Text style={{color: '#ebb89b'}}>{finishMenssage}</Text>
+            <Text style={{color: '#ebb89b'}}>{finishMessage}</Text>
           </View>
         </Modal>
       </SalesContext.Provider>

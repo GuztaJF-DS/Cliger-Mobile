@@ -7,10 +7,10 @@ import {useForm} from 'react-hook-form';
 import ProductContext from '../../contexts/ProductContext';
 
 const EditButton = styled.TouchableOpacity`
-  borderradius: 4px;
-  borderwidth: 1px;
+  border-radius: 4px;
+  border-width: 1px;
   padding: 2px;
-  justifycontent: center;
+  justify-content: center;
 `;
 
 export default function ProductDataInput({Data, Name, TrueName, KeyboardType}) {

@@ -127,7 +127,7 @@ export default function Main({navigation, route}) {
           Type={'Normal'}
           IconSvg={AddProduct}
           OnPress={() => setModalVisible(true)}
-          Name={'Adcionar Produtos/Serviços'}
+          Name={'Adicionar Produtos/Serviços'}
         />
         <MenuButton
           Type={'Normal'}

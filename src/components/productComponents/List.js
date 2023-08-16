@@ -4,27 +4,27 @@ import styled from 'styled-components';
 import {vw} from 'react-native-expo-viewport-units';
 
 export const ProductViewName = styled.View`
-  justifycontent: center;
-  borderleftcolor: #ebb89b;
-  borderleftwidth: 2px;
-  borderbottomcolor: #ebb89b;
-  borderbottomwidth: 2px;
+  justify-content: center;
+  border-left-color: #ebb89b;
+  border-left-width: 2px;
+  border-bottom-color: #ebb89b;
+  border-bottom-width: 2px;
 `;
 
 export const ProductViewValue = styled.View`
-  backgroundcolor: #68293f;
+  background-color: #68293f;
   width: ${vw(19)}px;
-  justifycontent: center;
-  borderrightcolor: #ebb89b;
-  borderrightwidth: 2px;
-  borderleftcolor: #ebb89b;
-  borderleftwidth: 2px;
-  borderbottomcolor: #ebb89b;
-  borderbottomwidth: 2px;
+  justify-content: center;
+  border-right-color: #ebb89b;
+  border-right-width: 2px;
+  border-left-color: #ebb89b;
+  border-left-width: 2px;
+  border-bottom-color: #ebb89b;
+  border-bottom-width: 2px;
 `;
 
 export const ProductPress = styled.TouchableHighlight`
-  flexdirection: row;
+  flex-direction: row;
 `;
 
 export const ProductText = styled.Text`

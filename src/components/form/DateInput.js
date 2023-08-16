@@ -4,7 +4,7 @@ import DatePicker from 'react-native-date-picker';
 import styled from 'styled-components/native';
 
 const InputArea = styled.View`
-  backgroundcolor: #fee2cf;
+  backgroundColor: #fee2cf;
 `;
 
 export default function DateInput({Control}) {

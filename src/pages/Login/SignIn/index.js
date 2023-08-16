@@ -142,10 +142,10 @@ export default function Main({navigation}) {
           justifyContent: 'center',
           flexDirection: 'row',
         }}>
-        <Text style={styles.TouchableTextStyle}>Não Possui Uma Conta?,</Text>
+        <Text style={styles.TouchableTextStyle}>Não possui uma conta?,</Text>
         <Text style={styles.TouchableBoldTextStyle}>
           {' '}
-          Clique Aqui Para Se Cadastrar
+          Clique aqui para se Cadastrar
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
