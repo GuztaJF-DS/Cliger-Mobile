@@ -32,7 +32,7 @@ export default function MenuButton({Name, IconSvg, Type, OnPress}) {
 	return (
 		<MenuInputArea>
 			<MenuInput onPress={OnPress}>
-				<IconSvg width={vw(IconWidth)} height={vh(15)} />
+				{/* <IconSvg width={vw(IconWidth)} height={vh(15)} /> */}
 				<MenuText>{Name}</MenuText>
 			</MenuInput>
 		</MenuInputArea>

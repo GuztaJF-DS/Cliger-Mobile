@@ -103,7 +103,7 @@ export default function Main({navigation, route}) {
 				navigation={navigation}
 				route={route}
 			/>
-			<View style={styles.Center}>
+			 <View style={styles.Center}>
 				<MenuButton
 					Type={'Large'}
 					IconSvg={Finances}

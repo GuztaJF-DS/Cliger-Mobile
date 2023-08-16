@@ -35,7 +35,7 @@ const CashHeader = styled.View`
     border-top-left-radius:1.5px;
     border-top-right-radius:1.5px;
     width:100%;
-    height:${vh(3.5)}px
+    height:${vh(3.5)}px;
     background-color:#e9f7d6;
     align-items:center;
     justify-content:center;
