@@ -59,7 +59,7 @@ export default function Sales({navigation, route}) {
     if (selectedData !== undefined) {
       var totalCost = 0;
       for (var i in selectedData.Price) {
-        if (selectedData.Weight[i] != '0') {
+        if (selectedData.Weight[i] !== '0') {
           let PriceXWeight =
             (parseFloat(selectedData.Weight[i]) *
               parseFloat(selectedData.Price[i])) /
@@ -80,7 +80,7 @@ export default function Sales({navigation, route}) {
   }
 
   function CheckTheModal() {
-    if (Object.values(selectedData).length != 0) {
+    if (Object.values(selectedData).length !== 0) {
       setModalVisible(true);
       ViewPrice();
       setErrors(null);
@@ -102,7 +102,7 @@ export default function Sales({navigation, route}) {
   useEffect(() => {
     async function FetchData() {
       try {
-        if (salesData != null) {
+        if (salesData !== null) {
           let PayBack =
             parseFloat(salesData.MoneyPayed) -
             parseFloat(selectedData.TotalCost);
@@ -118,7 +118,7 @@ export default function Sales({navigation, route}) {
           await Api.post('/SalesRecord/newRecord', Json);
           const resp = await Api.post('/finance/getAll', {userId: UserId});
           let currentBalance = 0;
-          if (resp.data.length != 0) {
+          if (resp.data.length !== 0) {
             currentBalance =
               resp.data[parseInt(resp.data.length) - 1].CurrentBalance;
           }

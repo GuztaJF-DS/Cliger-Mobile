@@ -99,14 +99,14 @@ export default function Products({route, navigation}) {
         setError(err);
       }
     }
-    if (Object.values(updateData).length != 0) {
+    if (Object.values(updateData).length !== 0) {
       Update();
     }
   }, [updateData]);
 
   /*UseEffect: orderNum,products*/
   useEffect(() => {
-    if (Object.values(products).length != 0) {
+    if (Object.values(products).length !== 0) {
       if (products.message == 'Not Found') {
         setError({
           register: 'Pelo visto você ainda não cadastrou nenhum produto',

@@ -13,14 +13,14 @@ const InputView = styled.View`
 const CloseInput = styled.TouchableOpacity`
   width: ${vw(7)}px;
   height: ${vw(7)}px;
-  borderradius: ${vw(7) / 2}px;
-  bordercolor: #610204;
-  borderwidth: 1px;
+  borderRadius: ${vw(7) / 2}px;
+  borderColor: #610204;
+  borderWidth: 1px;
   elevation: 2;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  backgroundcolor: #960306;
+  backgroundColor: #960306;
 `;
 
 const MenuText = styled.Text`

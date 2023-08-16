@@ -9,7 +9,7 @@ const MenuInput = styled.TouchableOpacity`
   align-items: center;
 `;
 const MenuText = styled.Text`
-  textalign: center;
+  textAlign: center;
   font-size: ${vw(4)}px;
   color: #ecb99b;
 `;

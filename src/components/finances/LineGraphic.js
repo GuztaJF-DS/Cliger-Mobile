@@ -29,7 +29,7 @@ export default function LineGraphic({data}) {
         console.error(err);
       }
     }
-    if (FormattedData.length != 0) {
+    if (FormattedData.length !== 0) {
       FetchData();
     }
   }, [proData]);
@@ -47,7 +47,7 @@ export default function LineGraphic({data}) {
       let total = 1;
       LabelName = 'Vendas do Dia';
       for (var i in FormattedData) {
-        if (i != FormattedData.length - 1) {
+        if (i !== FormattedData.length - 1) {
           if (
             i < FormattedData.length - 1 &&
             FormattedData[i].createdAt ==

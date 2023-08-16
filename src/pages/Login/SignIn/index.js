@@ -27,7 +27,7 @@ export default function Main({navigation}) {
   useEffect(() => {
     async function FetchData() {
       try {
-        if (Object.values(data).length != 0) {
+        if (Object.values(data).length !== 0) {
           const resp = await Api.post('auth/authenticate', data);
           if (resp.data.Error) {
             setError(resp.data);
@@ -55,7 +55,7 @@ export default function Main({navigation}) {
         UserName: login.UserName,
       });
     }
-    if (Object.values(login).length != 0) {
+    if (Object.values(login).length !== 0) {
       SendData();
     }
   }, [login]);

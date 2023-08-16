@@ -35,9 +35,9 @@ export default function SalesList({all}) {
 
   function splitAndOrganizeArray(Name) {
     let Var = String(selectedData[Name]);
-    let SplitedVar = Var.split(',');
+    let splittedVar = Var.split(',');
 
-    return SplitedVar;
+    return splittedVar;
   }
   function RemoveItemArray(Name, i) {
     selectedData[Name].splice(i, 1);
@@ -60,13 +60,13 @@ export default function SalesList({all}) {
         setAmount('1');
       }
 
-      if (Object.values(selectedData)[0] != undefined) {
+      if (Object.values(selectedData)[0] !== undefined) {
         while (i <= selectedData.Id.length) {
           if (selectedData.Id[i] == all.id) {
             setInputIsEditable(true);
             AlreadySelected = true;
             let DeletedAll = RemoveItemArray('Id', i);
-            if (DeletedAll != true) {
+            if (DeletedAll !== true) {
               RemoveItemArray('Price', i);
               RemoveItemArray('Amount', i);
               RemoveItemArray('Weight', i);
@@ -81,17 +81,17 @@ export default function SalesList({all}) {
       if (AlreadySelected == false) {
         setViewColor('#330f1c');
         setInputIsEditable(false);
-        if (selectedData.Id != undefined) {
-          let SplitedId = splitAndOrganizeArray('Id');
-          let SplitedPrice = splitAndOrganizeArray('Price');
-          let SplitedAmount = splitAndOrganizeArray('Amount');
-          let SplitedWeight = splitAndOrganizeArray('Weight');
+        if (selectedData.Id !== undefined) {
+          let splittedId = splitAndOrganizeArray('Id');
+          let splittedPrice = splitAndOrganizeArray('Price');
+          let splittedAmount = splitAndOrganizeArray('Amount');
+          let splittedWeight = splitAndOrganizeArray('Weight');
 
           setSelectedData({
-            Id: [...SplitedId, `${all.id}`],
-            Amount: [...SplitedAmount, amount],
-            Weight: [...SplitedWeight, weight],
-            Price: [...SplitedPrice, `${all.Value}`],
+            Id: [...splittedId, `${all.id}`],
+            Amount: [...splittedAmount, amount],
+            Weight: [...splittedWeight, weight],
+            Price: [...splittedPrice, `${all.Value}`],
           });
         } else {
           setSelectedData({

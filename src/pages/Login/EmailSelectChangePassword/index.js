@@ -26,7 +26,7 @@ export default function Main({navigation}) {
   useEffect(() => {
     async function FetchData() {
       try {
-        if (Object.values(data).length != 0) {
+        if (Object.values(data).length !== 0) {
           setModalView(true);
           const resp = await Api.post('auth/forgotPass', data);
           if (resp.data.Error) {
@@ -61,7 +61,7 @@ export default function Main({navigation}) {
 
   /*Mail's UseEffect*/
   useEffect(() => {
-    if (Object.values(mail).length != 0) {
+    if (Object.values(mail).length !== 0) {
       SendData();
     }
   }, [mail]);

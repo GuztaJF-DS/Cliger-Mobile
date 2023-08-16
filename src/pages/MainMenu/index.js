@@ -40,7 +40,7 @@ export default function Main({navigation, route}) {
         console.error(err);
       }
     }
-    if (modalVisible == true && Object.values(dados).length != 0) {
+    if (modalVisible == true && Object.values(dados).length !== 0) {
       fetchData();
     }
   }, [dados]);
@@ -50,7 +50,7 @@ export default function Main({navigation, route}) {
       try {
         const resp = await Api.post('/finance/getAll', {userId: Id});
         let currentBalance = 0;
-        if (resp.data.length != 0) {
+        if (resp.data.length !== 0) {
           currentBalance =
             resp.data[parseInt(resp.data.length) - 1].CurrentBalance;
         }
@@ -69,7 +69,7 @@ export default function Main({navigation, route}) {
         console.error(err);
       }
     }
-    if (minusModal == true && Object.values(balanceData).length != 0) {
+    if (minusModal == true && Object.values(balanceData).length !== 0) {
       fetchFinanceData();
     }
   }, [balanceData]);
@@ -86,7 +86,7 @@ export default function Main({navigation, route}) {
 
   /*UseEffect: road*/
   useEffect(() => {
-    if (Object.values(road).length != 0) {
+    if (Object.values(road).length !== 0) {
       navigation.navigate(road, {
         UserId: Id,
       });

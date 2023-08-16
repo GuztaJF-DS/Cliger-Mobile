@@ -9,7 +9,6 @@ const InputArea = styled.View`
 
 export default function DateInput({Control}) {
   const [date, setDate] = useState(new Date());
-  console.log('date', date);
 
   return (
     <InputArea>
@@ -22,11 +21,11 @@ export default function DateInput({Control}) {
           <DatePicker
             onDateChange={onChange}
             date={value}
-            mode="time"
+            mode="date"
             androidVariant="nativeAndroid"
           />
         )}
-        name={'Name'}
+        name={'BirthDate'}
         defaultValue={date}
       />
     </InputArea>

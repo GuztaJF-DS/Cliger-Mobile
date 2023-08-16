@@ -24,7 +24,7 @@ export default function Main({navigation, route}) {
   useEffect(() => {
     async function FetchData() {
       try {
-        if (Object.values(data).length != 0) {
+        if (Object.values(data).length !== 0) {
           const resp = await Api.post('auth/ChangePass', data);
           if (resp.data.Error) {
             setError(resp.data);
@@ -49,7 +49,7 @@ export default function Main({navigation, route}) {
 
   /*Password's UseEffect*/
   useEffect(() => {
-    if (Object.values(password).length != 0) {
+    if (Object.values(password).length !== 0) {
       SendData();
     }
   }, [password]);

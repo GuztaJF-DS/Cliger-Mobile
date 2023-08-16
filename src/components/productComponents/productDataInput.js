@@ -31,7 +31,7 @@ export default function ProductDataInput({Data, Name, TrueName, KeyboardType}) {
         alignContent: 'center',
         marginBottom: 7,
       }}>
-      {editing != true ? (
+      {editing !== true ? (
         <>
           <Text style={{color: 'white', width: '80%', fontSize: 17}}>
             {Name}: {Data}
@@ -42,7 +42,7 @@ export default function ProductDataInput({Data, Name, TrueName, KeyboardType}) {
             <Text style={{color: 'white', fontSize: 17}}>Editar</Text>
           </EditButton>
         </>
-      ) : TrueName != 'Type' ? (
+      ) : TrueName !== 'Type' ? (
         <>
           <View
             style={{

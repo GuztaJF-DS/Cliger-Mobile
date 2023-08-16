@@ -12,12 +12,14 @@ import Birth from '../../assets/Icons/Birth.svg';
 
 export default function BirthdayComponent({control}) {
   const [modalVisible, setModalVisible] = useState(false);
-  var splitedPreviewDate = '';
+  var splittedPreviewDate = '';
   var PreviewDateColor = 'black';
   var PreviewDateOpacity = 0.45;
 
+  console.log(control._fields.BirthDate)
+
   /*BirthDate Preview*/
-  if (control?._fields?.BirthDate != undefined) {
+  if (control?._fields?.BirthDate !== undefined) {
     const meses = [
       'Janeiro',
       'Fevereiro',
@@ -44,16 +46,16 @@ export default function BirthdayComponent({control}) {
       dataISODataHora.getFullYear();
     PreviewDateColor = '#ebb89b';
     PreviewDateOpacity = 1;
-    splitedPreviewDate = dataFormatada;
+    splittedPreviewDate = dataFormatada;
   } else {
-    splitedPreviewDate = 'Data de Nascimento';
+    splittedPreviewDate = 'Data de Nascimento';
   }
 
   /*Other Functions*/
   function BirthDateTreatment() {
     if (
       control?.fieldsRef?.current?.BirthDate == undefined &&
-      control?.fieldsRef?.current?.Password != undefined
+      control?.fieldsRef?.current?.Password !== undefined
     ) {
       return 'Campo obrigatorio';
     }
@@ -64,7 +66,7 @@ export default function BirthdayComponent({control}) {
     <>
       <InputShow
         IconSvg={Birth}
-        Name={splitedPreviewDate}
+        Name={splittedPreviewDate}
         Color={PreviewDateColor}
         Opacity={PreviewDateOpacity}
         OnPressFunction={() => setModalVisible(true)}

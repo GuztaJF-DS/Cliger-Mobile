@@ -3,20 +3,15 @@ import {View, ScrollView, Text} from 'react-native';
 import {useForm} from 'react-hook-form';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ResponsiveImage from 'react-native-responsive-image';
-import Modal from 'react-native-modal';
 
 /*My Components*/
+import {styles, InputArea, NewText} from '../../Style';
 import Api from '../../../Api';
 import Input from '../../../components/form/Input';
-import DateInput from '../../../components/form/DateInput';
-import InputShow from '../../../components/form/InputShow';
-import {styles, InputArea, NewText} from '../../Style';
-import CloseButton from '../../../components/form/CloseButton';
 
 /*Icons*/
 import Email from '../../../assets/Icons/Email.svg';
 import Password from '../../../assets/Icons/Password.svg';
-import Birth from '../../../assets/Icons/Birth.svg';
 import Phone from '../../../assets/Icons/Phone.svg';
 import User from '../../../assets/Icons/User.svg';
 
@@ -33,7 +28,7 @@ export default function Main({navigation}) {
   useEffect(() => {
     async function fetchData() {
       try {
-        if (Object.values(dados).length != 0) {
+        if (Object.values(dados).length !== 0) {
           const response = await Api.post('/auth/register', dados);
           setProduct(response.data);
         }
@@ -46,10 +41,10 @@ export default function Main({navigation}) {
 
   /*UseEffect: Product*/
   useEffect(() => {
-    if (Object.values(product).length != 0) {
-      if (product.Error != undefined) {
+    if (Object.values(product).length !== 0) {
+      if (product.Error !== undefined) {
         setErrors(JSON.parse(`{"General":{"message":"${product.Error}"}}`));
-      } else if (product.message != undefined) {
+      } else if (product.message !== undefined) {
         AsyncStorage.setItem('@MasterToken', product.ConfirmToken);
         navigation.navigate('Main', {
           Id: product.Id,
@@ -70,14 +65,14 @@ export default function Main({navigation}) {
 
   /*Submit Form's Function*/
   const onSubmit = data => {
-    if (control?.fieldsRef?.current?.BirthDate != undefined) {
-      const unsplitedDate = data.BirthDate;
-      var splitedData = unsplitedDate.toISOString().substring(0, 10);
+    if (control?.fieldsRef?.current?.BirthDate !== undefined) {
+      const unSplittedDate = data.BirthDate;
+      var splittedData = unSplittedDate.toISOString().substring(0, 10);
       let Body = {
         UserName: data.UserName,
         Email: data.Email,
         Password: data.Password,
-        BirthDate: splitedData,
+        BirthDate: splittedData,
         PhoneNumber: data.PhoneNumber,
       };
       setDados(Body);

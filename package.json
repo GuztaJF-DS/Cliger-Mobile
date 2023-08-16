@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint . --fix",
+    "cspell":"cspell lint \"src/**/*.js\"",
     "prettier": "prettier . --write",
     "start": "react-native start",
     "test": "jest"
