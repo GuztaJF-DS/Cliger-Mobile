@@ -1,3 +1,5 @@
+secret.json
+
 # OSX
 #
 .DS_Store
@@ -64,4 +66,3 @@ yarn-error.log
 
 # testing
 /coverage
-./secret.json

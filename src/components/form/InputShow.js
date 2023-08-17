@@ -40,7 +40,7 @@ export default function InputShow({
 			<CustomInput onPress={OnPressFunction}>
 				<CustomShow style={{color: Color, opacity: Opacity}}>{Name}</CustomShow>
 			</CustomInput>
-			{/* <IconSvg width="24" height="24" /> */}
+			<IconSvg width="24" height="24" />
 		</InputArea>
 	);
 }
