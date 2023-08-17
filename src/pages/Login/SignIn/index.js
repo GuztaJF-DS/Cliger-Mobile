@@ -19,7 +19,6 @@ import Logo from '../../../assets/Images/Cliger_Logo_TextOnly.png';
 
 export default function Main({navigation}) {
 	const [login, setLogin] = useState({});
-	// eslint-disable-next-line no-unused-vars
 	const [data, setData] = useState({});
 	const [error, setError] = useState({});
 
@@ -63,18 +62,18 @@ export default function Main({navigation}) {
 	/*React-Hooks-Form constants*/
 	const {
 		control,
-		// handleSubmit,
+		handleSubmit,
 		formState: {errors},
 	} = useForm();
 
 	/*Submit Form's Function*/
-	// const onSubmit=(data)=>{
-	//     let Body={
-	//       Email:data.Email,
-	//       Password:data.Password
-	//     }
-	//     setData(Body);
-	// }
+	const onSubmit=(data)=>{
+	    let Body={
+	      Email:data.Email,
+	      Password:data.Password
+	    }
+	    setData(Body);
+	}
 
 	/*Other Functions*/
 	function errorTreatment(Field) {
@@ -128,8 +127,8 @@ export default function Main({navigation}) {
 
 			<View style={styles.Center}>
 				<InputArea
-					underlayColor="#5e2638"
-					// onPress={handleSubmit(onSubmit)}
+					underlayColor="hsl(341, 42%, 26%)"
+					onPress={handleSubmit(onSubmit)}
 				>
 					<NewText>Entrar</NewText>
 				</InputArea>
