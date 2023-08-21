@@ -8,7 +8,7 @@ import {
 import Api from '../../Api';
 
 export default function LineGraphic({data}) {
-	var obj = [];
+	let obj = [];
 	let type = data.Type;
 	let FormattedData = data.RawData === undefined ? '' : data.RawData;
 	let LabelName = '';
@@ -19,8 +19,8 @@ export default function LineGraphic({data}) {
 		async function FetchData() {
 			try {
 				const Json = {
-					userId: FormattedData.userId,
-					ProductId: FormattedData.ProductId,
+					userId: FormattedData?.userId,
+					ProductId: FormattedData?.ProductId,
 				};
 				const resp = await Api.post('/SalesRecord/GetOneProduct', Json);
 				setProductSales(resp.data);
@@ -44,66 +44,60 @@ export default function LineGraphic({data}) {
 			break;
 
 		case 'Sales': {
-			let total = 1;
-			LabelName = 'Vendas do Dia';
-			for (var i in FormattedData) {
-				if (i !== FormattedData.length - 1) {
-					if (
-						i < FormattedData.length - 1 &&
-						FormattedData[i].createdAt ==
-							FormattedData[parseInt(i) + 1].createdAt
-					) {
-						total++;
-					} else {
-						obj.push({
-							date: FormattedData[i].createdAt,
-							x: new Date(FormattedData[i].createdAt),
-							y: total,
-						});
-						total = 1;
-					}
+			obj = [];
+			LabelName = 'Vendas';
+			let total = 0;
+			FormattedData.map((item, index)=>{
+				if (
+					index < FormattedData.length - 1 &&
+						item?.createdAt ==
+						FormattedData[parseInt(index) + 1]?.createdAt
+				) {
+					total+=item.Amount;
+				} else {
+					const FormattedDate = item.createdAt.replace(/(\/)/g, '-')+'T00:00:00';
+					total+=item.Amount;
+					obj.push({
+						date: item.createdAt,
+						x: new Date(FormattedDate),
+						y: total,
+					});
+					total = 0;
 				}
-			}
+			})
 			break;
 		}
 
 		case 'Finance': {
 			LabelName = 'Saldo';
-			let FinanceCoordinates = FormattedData.map(
-				({CurrentBalance}) => CurrentBalance,
-			);
-			for (var f in FinanceCoordinates) {
+			obj = [];
+			FormattedData.map((item, index)=>{
 				obj.push({
-					date: FormattedData[f].createdAt,
-					x: f,
-					y: FinanceCoordinates[f],
+					date: item?.createdAt,
+					x: index,
+					y: item.CurrentBalance,
 				});
-			}
+			})
 			break;
 		}
 		case 'Product': {
-			let total2 = 0;
-			for (var p in productSales) {
-				if (productSales.length == 1) {
-					total2 = total2 + parseInt(productSales[p].Amount);
+			obj = [];
+			let totalProd = 0;
+			productSales?.map((prod,id)=>{
+				const FormattedDate = prod.createdAt.replace(/(\/)/g, '-')+'T00:00:00';
+				if(prod.createdAt == productSales[id+1]?.createdAt){
+					totalProd+=prod.Amount;
 				}
-				if (p == productSales.length - 2) {
-					total2 = total2 + parseInt(productSales[parseInt(p) + 1].Amount);
-				}
-				if (
-					p < productSales.length - 1 &&
-					productSales[p].createdAt == productSales[parseInt(p) + 1].createdAt
-				) {
-					total2 = total2 + parseInt(productSales[p].Amount);
-				} else {
+				else{
+					totalProd+=prod.Amount;
 					obj.push({
-						date: productSales[p].createdAt,
-						x: new Date(productSales[p].createdAt),
-						y: total2,
+						date: prod.createdAt,
+						x: new Date(FormattedDate),
+						y: totalProd,
 					});
-					total2 = 0;
+					totalProd = 0;
 				}
-			}
+			});
 
 			break;
 		}
