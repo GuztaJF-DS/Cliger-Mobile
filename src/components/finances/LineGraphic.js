@@ -39,6 +39,13 @@ export default function LineGraphic({data}) {
 		type = 'Nothing';
 	}
 
+	const getDaysRangeArray = function(start, end) {
+    for(var arr=[],dt=new Date(start); dt<=new Date(end); dt.setDate(dt.getDate()+1)){
+        arr.push(new Date(dt));
+    }
+    return arr;
+	};
+
 	switch (type) {
 		case 'Nothing':
 			obj.push({x: 0, y: 0});
@@ -47,23 +54,37 @@ export default function LineGraphic({data}) {
 		case 'Sales': {
 			obj = [];
 			LabelName = 'Vendas';
-			let total = 0;
+			let totalAmount = 0;
+			let totalMoney = 0;
 			FormattedData.map((item, index)=>{
 				if (
 					index < FormattedData.length - 1 &&
 						item?.createdAt ==
 						FormattedData[parseInt(index) + 1]?.createdAt
 				) {
-					total+=item.Amount;
+					totalAmount+=item.Amount;
+					totalMoney+=item.TotalCost;
 				} else {
 					const FormattedDate = item.createdAt.replace(/(\/)/g, '-')+'T00:00:00';
-					total+=item.Amount;
+					totalAmount+=item.Amount;
+					totalMoney+=item.TotalCost;
 					obj.push({
 						date: item.createdAt,
 						x: new Date(FormattedDate),
-						y: total,
+						y: totalAmount,
+						moneyMade:totalMoney
 					});
-					total = 0;
+					totalAmount = 0;
+					totalMoney=0;
+				}
+			})
+			const dates = getDaysRangeArray(obj?.[0]?.x, new Date())
+			dates.map((date,index)=>{
+				const alreadyIn = !!obj.find((objDate)=>{
+					return new Date(objDate.x).getTime()===new Date(date).getTime();
+				});
+				if(!alreadyIn){
+					obj.splice(index+1,0,{date:date.toISOString().slice(0, 10), x:date, y:0, moneyMade:0})
 				}
 			})
 			break;
@@ -138,13 +159,16 @@ export default function LineGraphic({data}) {
 									return `${p3}/${p2}/${p1}`
 								}
 								const FormattedDatum =  datum.date.replace(fixRegex, replacer);
+								if(type==='Sales'){
+									return `Data: ${FormattedDatum}\n ${LabelName}:${datum.y}\n Ganhos: ${datum?.moneyMade} R$`
+								}
 								return `Data: ${FormattedDatum}\n ${LabelName}:${datum.y}`
 							}
 							}
 						/>
 					}>
 					<VictoryLine
-						style={{data: {stroke: '#3fd458', strokeWidth: 4}}}
+						style={{data: {stroke: '#cc8d46', strokeWidth: 4}}}
 						data={obj}
 					/>
 				</VictoryChart>
