@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {
 	VictoryLine,
+	VictoryTheme,
 	VictoryChart,
 	VictoryVoronoiContainer,
 } from 'victory-native';
@@ -102,18 +103,43 @@ export default function LineGraphic({data}) {
 			break;
 		}
 	}
+	const chartTheme = {
+	...VictoryTheme.material,
+  axis: {
+    style: {
+      tickLabels: {
+        fill: 'white',
+      },
+			grid: {
+				fill: "none",
+				stroke: "none",
+				pointerEvents: "painted",
+			},
+    },
+  },
+};
 	return (
 		<View>
 			{type == 'Nothing' ? (
 				<Text>Você ainda não registrou nenhuma venda</Text>
 			) : (
 				<VictoryChart
+					theme={ chartTheme }
 					height={285}
 					containerComponent={
 						<VictoryVoronoiContainer
 							voronoiDimension="x"
-							labels={({datum}) =>
-								`Data: ${datum.date},\n ${LabelName}:${datum.y}`
+							labels={({datum}) =>{
+								const fixRegex = /(19|20\d{2})\-((?:\d{1})?[1-9]|1[1,2])\-(0[1-9]|[12][0-9]|3[01])/g;
+								function replacer(match, p1, p2, p3){
+									if(!p2.match(/(0[1-9]|1[1,2])/)){
+										return `${p3}/0${p2}/${p1}`
+									}
+									return `${p3}/${p2}/${p1}`
+								}
+								const FormattedDatum =  datum.date.replace(fixRegex, replacer);
+								return `Data: ${FormattedDatum}\n ${LabelName}:${datum.y}`
+							}
 							}
 						/>
 					}>

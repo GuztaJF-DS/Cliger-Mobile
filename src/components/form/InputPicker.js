@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {Controller} from 'react-hook-form';
 import styled from 'styled-components/native';
-// import { Picker } from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 
 const InputArea = styled.View`
 	height: 45px;
@@ -32,17 +32,18 @@ export default function InputPicker({Control, Name, Values}) {
 						style={{
 							width: '100%',
 						}}>
-						{/* <Picker
+						<Picker
               onBlur={onBlur}
               onValueChange={onChange}
               selectedValue={value}
-              style={{ color: 'white' }}
+              style={{ color: '#ffe9e9' }}
               placeholder={'Picker'}
+							dropdownIconColor={'#ffe9e9'}
             >
               {Values.map((Item) => (
                 <Picker.Item key={Item.indexOf(Item)} label={Item} value={Item} />
               ))}
-            </Picker> */}
+            </Picker>
 					</View>
 				)}
 				name={Name}

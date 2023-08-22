@@ -55,6 +55,7 @@ export default function LightInput({
 							placeholder={Placeholder}
 							secureTextEntry={Password}
 							color="#ebb89b"
+							placeholderTextColor="#ffe9e9" 
 							maxLength={maxLength}
 							keyboardType={keyboardType}
 						/>
