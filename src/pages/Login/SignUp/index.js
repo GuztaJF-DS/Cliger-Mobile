@@ -30,7 +30,6 @@ export default function Main({navigation}) {
 			try {
 				if (Object.values(dados).length !== 0) {
 					const response = await Api.post('/auth/register', dados);
-					console.log('response', response);
 					setProduct(response.data);
 				}
 			} catch (err) {
@@ -66,7 +65,6 @@ export default function Main({navigation}) {
 
 	/*Submit Form's Function*/
 	const onSubmit = data => {
-		console.log(control._fields);
 		if (control?._fields?.BirthDate !== undefined) {
 			const unSplittedDate = data.BirthDate;
 			var splittedData = unSplittedDate.toISOString().substring(0, 10);
