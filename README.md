@@ -1,4 +1,4 @@
-<h1 align="center"><h1 align="center"><img src="src/assets/Cliger_Logo.png" height="400"></h1></h1>
+<h1 align="center"><h1 align="center"><img src="src/assets/Images/CligerBigLogo.png" height="400"></h1></h1>
 <h2 align="center">📉 Welcome to the Client Manager 📈</h2>
 <h3 align="center"><img src="https://img.shields.io/github/issues/GuztaJF-DS/Cliger-Server"/> <img src="https://img.shields.io/github/stars/GuztaJF-DS/Cliger-Server"/> <img src="https://img.shields.io/github/license/GuztaJF-DS/Cliger-Server"/>  <img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2FIGotaMellowship"/></h3>
 
@@ -99,7 +99,6 @@ a - run on Android
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-## Congratulations! :tada:
 
 # License
 
