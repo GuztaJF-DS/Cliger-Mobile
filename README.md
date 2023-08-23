@@ -44,7 +44,7 @@ this is the second part of cliger, the app bit, for this to work, you will need 
 ## Step 1: Clone the project and access the folder
 
 ```bash
-$ git clone git@github.com:GuztaJF-DS/Cliger-Mobile.git && cd Cliger-Server
+$ git clone git@github.com:GuztaJF-DS/Cliger-Mobile.git && cd Cliger-Mobile
 ```
 ## Step 1: Set your secret.json
 
