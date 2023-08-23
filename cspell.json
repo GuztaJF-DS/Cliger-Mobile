@@ -9,6 +9,12 @@
 		}
 	],
 	"caseSensitive": false,
-	"dictionaries": ["added-words"],
-	"ignorePaths": ["node_modules", "/added-words.txt"]
+	"dictionaries": [
+		"added-words"
+	],
+	"ignorePaths": [
+		"node_modules",
+		"/added-words.txt"
+	],
+	"language": "en,pt-BR"
 }

@@ -16,8 +16,6 @@ export default function BirthdayComponent({control}) {
 	var PreviewDateColor = 'black';
 	var PreviewDateOpacity = 0.45;
 
-	console.log(control._fields.BirthDate);
-
 	/*BirthDate Preview*/
 	if (control?._fields?.BirthDate !== undefined) {
 		const meses = [
