@@ -46,7 +46,7 @@ this is the second part of cliger, the app bit, for this to work, you will need 
 ```bash
 $ git clone git@github.com:GuztaJF-DS/Cliger-Mobile.git && cd Cliger-Mobile
 ```
-## Step 1: Set your secret.json
+## Step 1: Set your keys.json
 
 you will need to insert your local IP to connect to the node server
 

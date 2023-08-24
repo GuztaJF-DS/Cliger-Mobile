@@ -63,6 +63,7 @@ export default function input({
 							placeholder={Placeholder}
 							secureTextEntry={Password}
 							color="#ebb89b"
+							placeholderTextColor="#fdd2d2" 
 							maxLength={maxLength}
 							keyboardType={keyboardType}
 						/>
@@ -75,3 +76,4 @@ export default function input({
 		</InputArea>
 	);
 }
+ 
